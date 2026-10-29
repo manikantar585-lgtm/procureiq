@@ -1,0 +1,1377 @@
+[
+  {
+    "PurchaseOrder": "4500000101",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300001",
+    "PurchaseOrderDate": "2026-04-23",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000101",
+        "PurchaseOrderItem": "10",
+        "Material": "RM-STL-0042",
+        "PurchaseOrderItemText": "MS Steel Plate 6mm 1250x2500",
+        "OrderQuantity": 120,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 2450,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000101",
+        "PurchaseOrderItem": "20",
+        "Material": "RM-STL-0118",
+        "PurchaseOrderItemText": "SS304 Round Bar 25mm",
+        "OrderQuantity": 75,
+        "PurchaseOrderQuantityUnit": "KG",
+        "NetPriceAmount": 268,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000102",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300002",
+    "PurchaseOrderDate": "2026-04-26",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000102",
+        "PurchaseOrderItem": "10",
+        "Material": "EL-MCB-0063",
+        "PurchaseOrderItemText": "MCB 63A Triple Pole",
+        "OrderQuantity": 70,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1385,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000102",
+        "PurchaseOrderItem": "20",
+        "Material": "EL-CBL-0450",
+        "PurchaseOrderItemText": "Armoured Cable 4C x 16 sq mm",
+        "OrderQuantity": 140,
+        "PurchaseOrderQuantityUnit": "M",
+        "NetPriceAmount": 612,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000102",
+        "PurchaseOrderItem": "30",
+        "Material": "EL-CTR-2201",
+        "PurchaseOrderItemText": "Siemens Contactor 3RT2026 24V",
+        "OrderQuantity": 195,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 4120,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000103",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300003",
+    "PurchaseOrderDate": "2026-05-01",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000103",
+        "PurchaseOrderItem": "10",
+        "Material": "PK-STR-0020",
+        "PurchaseOrderItemText": "Stretch Wrap Film 23 micron",
+        "OrderQuantity": 4,
+        "PurchaseOrderQuantityUnit": "RL",
+        "NetPriceAmount": 1460,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000103",
+        "PurchaseOrderItem": "20",
+        "Material": "PK-PAL-1210",
+        "PurchaseOrderItemText": "Heat-Treated Wooden Pallet 1200x1000",
+        "OrderQuantity": 155,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1150,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000104",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300005",
+    "PurchaseOrderDate": "2026-05-06",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT60",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000104",
+        "PurchaseOrderItem": "10",
+        "Material": "CH-LUB-0450",
+        "PurchaseOrderItemText": "Hydraulic Oil ISO VG 68",
+        "OrderQuantity": 150,
+        "PurchaseOrderQuantityUnit": "L",
+        "NetPriceAmount": 236,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000104",
+        "PurchaseOrderItem": "20",
+        "Material": "CH-SOL-0011",
+        "PurchaseOrderItemText": "Industrial Solvent IPA 99%",
+        "OrderQuantity": 900,
+        "PurchaseOrderQuantityUnit": "L",
+        "NetPriceAmount": 142,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000105",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300006",
+    "PurchaseOrderDate": "2026-05-10",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000105",
+        "PurchaseOrderItem": "10",
+        "Material": "MC-SEAL-0080",
+        "PurchaseOrderItemText": "Oil Seal 80x100x10",
+        "OrderQuantity": 75,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 145,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000105",
+        "PurchaseOrderItem": "20",
+        "Material": "MC-BRG-6205",
+        "PurchaseOrderItemText": "Deep Groove Ball Bearing 6205-2RS",
+        "OrderQuantity": 775,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 286,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000106",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300007",
+    "PurchaseOrderDate": "2026-05-15",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT15",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000106",
+        "PurchaseOrderItem": "10",
+        "Material": "SV-LOG-LTL",
+        "PurchaseOrderItemText": "Part Load Freight per Tonne",
+        "OrderQuantity": 6,
+        "PurchaseOrderQuantityUnit": "TO",
+        "NetPriceAmount": 4200,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000107",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300008",
+    "PurchaseOrderDate": "2026-05-22",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000107",
+        "PurchaseOrderItem": "10",
+        "Material": "OF-PAP-A4",
+        "PurchaseOrderItemText": "A4 Copier Paper 75 GSM (Ream)",
+        "OrderQuantity": 650,
+        "PurchaseOrderQuantityUnit": "RM",
+        "NetPriceAmount": 245,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000107",
+        "PurchaseOrderItem": "20",
+        "Material": "OF-CHR-ERG",
+        "PurchaseOrderItemText": "Ergonomic Office Chair",
+        "OrderQuantity": 50,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 8900,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000108",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300010",
+    "PurchaseOrderDate": "2026-05-27",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000108",
+        "PurchaseOrderItem": "10",
+        "Material": "SF-SHO-0007",
+        "PurchaseOrderItemText": "Safety Shoes Steel Toe",
+        "OrderQuantity": 115,
+        "PurchaseOrderQuantityUnit": "PR",
+        "NetPriceAmount": 1650,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000108",
+        "PurchaseOrderItem": "20",
+        "Material": "SF-HLM-0001",
+        "PurchaseOrderItemText": "Safety Helmet ISI Marked",
+        "OrderQuantity": 500,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 395,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000109",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300004",
+    "PurchaseOrderDate": "2026-06-01",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT15",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000109",
+        "PurchaseOrderItem": "10",
+        "Material": "SV-IT-NET",
+        "PurchaseOrderItemText": "Network Security Audit",
+        "OrderQuantity": 1,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 145000,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000110",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300001",
+    "PurchaseOrderDate": "2026-06-06",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000110",
+        "PurchaseOrderItem": "10",
+        "Material": "RM-STL-0042",
+        "PurchaseOrderItemText": "MS Steel Plate 6mm 1250x2500",
+        "OrderQuantity": 50,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 2450,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000110",
+        "PurchaseOrderItem": "20",
+        "Material": "RM-STL-0118",
+        "PurchaseOrderItemText": "SS304 Round Bar 25mm",
+        "OrderQuantity": 175,
+        "PurchaseOrderQuantityUnit": "KG",
+        "NetPriceAmount": 268,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000110",
+        "PurchaseOrderItem": "30",
+        "Material": "RM-STL-0207",
+        "PurchaseOrderItemText": "GI Sheet 1.2mm",
+        "OrderQuantity": 30,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1890,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000111",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300002",
+    "PurchaseOrderDate": "2026-06-10",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000111",
+        "PurchaseOrderItem": "10",
+        "Material": "EL-MCB-0063",
+        "PurchaseOrderItemText": "MCB 63A Triple Pole",
+        "OrderQuantity": 95,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1385,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000111",
+        "PurchaseOrderItem": "20",
+        "Material": "EL-CBL-0450",
+        "PurchaseOrderItemText": "Armoured Cable 4C x 16 sq mm",
+        "OrderQuantity": 75,
+        "PurchaseOrderQuantityUnit": "M",
+        "NetPriceAmount": 612,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000111",
+        "PurchaseOrderItem": "30",
+        "Material": "EL-CTR-2201",
+        "PurchaseOrderItemText": "Siemens Contactor 3RT2026 24V",
+        "OrderQuantity": 110,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 4120,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000112",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300006",
+    "PurchaseOrderDate": "2026-06-15",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000112",
+        "PurchaseOrderItem": "10",
+        "Material": "MC-BRG-22210",
+        "PurchaseOrderItemText": "Spherical Roller Bearing 22210",
+        "OrderQuantity": 105,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 3420,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000112",
+        "PurchaseOrderItem": "20",
+        "Material": "MC-SEAL-0080",
+        "PurchaseOrderItemText": "Oil Seal 80x100x10",
+        "OrderQuantity": 825,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 145,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000113",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300003",
+    "PurchaseOrderDate": "2026-06-20",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000113",
+        "PurchaseOrderItem": "10",
+        "Material": "PK-BOX-0310",
+        "PurchaseOrderItemText": "Corrugated Box 5-Ply 600x400x400",
+        "OrderQuantity": 450,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 78,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000113",
+        "PurchaseOrderItem": "20",
+        "Material": "PK-PAL-1210",
+        "PurchaseOrderItemText": "Heat-Treated Wooden Pallet 1200x1000",
+        "OrderQuantity": 125,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1150,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000113",
+        "PurchaseOrderItem": "30",
+        "Material": "PK-STR-0020",
+        "PurchaseOrderItemText": "Stretch Wrap Film 23 micron",
+        "OrderQuantity": 6,
+        "PurchaseOrderQuantityUnit": "RL",
+        "NetPriceAmount": 1460,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000114",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300005",
+    "PurchaseOrderDate": "2026-06-25",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT60",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000114",
+        "PurchaseOrderItem": "10",
+        "Material": "CH-LUB-0450",
+        "PurchaseOrderItemText": "Hydraulic Oil ISO VG 68",
+        "OrderQuantity": 500,
+        "PurchaseOrderQuantityUnit": "L",
+        "NetPriceAmount": 236,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000114",
+        "PurchaseOrderItem": "20",
+        "Material": "CH-SOL-0011",
+        "PurchaseOrderItemText": "Industrial Solvent IPA 99%",
+        "OrderQuantity": 550,
+        "PurchaseOrderQuantityUnit": "L",
+        "NetPriceAmount": 142,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000115",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300010",
+    "PurchaseOrderDate": "2026-07-01",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000115",
+        "PurchaseOrderItem": "10",
+        "Material": "SF-HLM-0001",
+        "PurchaseOrderItemText": "Safety Helmet ISI Marked",
+        "OrderQuantity": 700,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 395,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000116",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300008",
+    "PurchaseOrderDate": "2026-07-07",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000116",
+        "PurchaseOrderItem": "10",
+        "Material": "OF-TNR-88A",
+        "PurchaseOrderItemText": "Toner Cartridge 88A",
+        "OrderQuantity": 85,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 2950,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000117",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300007",
+    "PurchaseOrderDate": "2026-07-09",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT15",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000117",
+        "PurchaseOrderItem": "10",
+        "Material": "SV-LOG-LTL",
+        "PurchaseOrderItemText": "Part Load Freight per Tonne",
+        "OrderQuantity": 3,
+        "PurchaseOrderQuantityUnit": "TO",
+        "NetPriceAmount": 4200,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000118",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300001",
+    "PurchaseOrderDate": "2026-07-16",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000118",
+        "PurchaseOrderItem": "10",
+        "Material": "RM-STL-0042",
+        "PurchaseOrderItemText": "MS Steel Plate 6mm 1250x2500",
+        "OrderQuantity": 75,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 2450,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000118",
+        "PurchaseOrderItem": "20",
+        "Material": "RM-STL-0207",
+        "PurchaseOrderItemText": "GI Sheet 1.2mm",
+        "OrderQuantity": 25,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1890,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000119",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300002",
+    "PurchaseOrderDate": "2026-07-22",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000119",
+        "PurchaseOrderItem": "10",
+        "Material": "EL-CBL-0450",
+        "PurchaseOrderItemText": "Armoured Cable 4C x 16 sq mm",
+        "OrderQuantity": 55,
+        "PurchaseOrderQuantityUnit": "M",
+        "NetPriceAmount": 612,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000119",
+        "PurchaseOrderItem": "20",
+        "Material": "EL-CTR-2201",
+        "PurchaseOrderItemText": "Siemens Contactor 3RT2026 24V",
+        "OrderQuantity": 90,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 4120,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000119",
+        "PurchaseOrderItem": "30",
+        "Material": "EL-MCB-0063",
+        "PurchaseOrderItemText": "MCB 63A Triple Pole",
+        "OrderQuantity": 200,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1385,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000120",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300006",
+    "PurchaseOrderDate": "2026-07-24",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000120",
+        "PurchaseOrderItem": "10",
+        "Material": "MC-BRG-6205",
+        "PurchaseOrderItemText": "Deep Groove Ball Bearing 6205-2RS",
+        "OrderQuantity": 550,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 286,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000120",
+        "PurchaseOrderItem": "20",
+        "Material": "MC-BRG-22210",
+        "PurchaseOrderItemText": "Spherical Roller Bearing 22210",
+        "OrderQuantity": 195,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 3420,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000121",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300004",
+    "PurchaseOrderDate": "2026-07-30",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT15",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000121",
+        "PurchaseOrderItem": "10",
+        "Material": "SV-IT-AMC",
+        "PurchaseOrderItemText": "SAP Basis Support AMC - Monthly",
+        "OrderQuantity": 1,
+        "PurchaseOrderQuantityUnit": "MON",
+        "NetPriceAmount": 185000,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000122",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300003",
+    "PurchaseOrderDate": "2026-08-05",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000122",
+        "PurchaseOrderItem": "10",
+        "Material": "PK-STR-0020",
+        "PurchaseOrderItemText": "Stretch Wrap Film 23 micron",
+        "OrderQuantity": 3,
+        "PurchaseOrderQuantityUnit": "RL",
+        "NetPriceAmount": 1460,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000122",
+        "PurchaseOrderItem": "20",
+        "Material": "PK-BOX-0310",
+        "PurchaseOrderItemText": "Corrugated Box 5-Ply 600x400x400",
+        "OrderQuantity": 50,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 78,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000122",
+        "PurchaseOrderItem": "30",
+        "Material": "PK-PAL-1210",
+        "PurchaseOrderItemText": "Heat-Treated Wooden Pallet 1200x1000",
+        "OrderQuantity": 25,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1150,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000123",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300005",
+    "PurchaseOrderDate": "2026-08-10",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT60",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000123",
+        "PurchaseOrderItem": "10",
+        "Material": "CH-SOL-0011",
+        "PurchaseOrderItemText": "Industrial Solvent IPA 99%",
+        "OrderQuantity": 875,
+        "PurchaseOrderQuantityUnit": "L",
+        "NetPriceAmount": 142,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000124",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300010",
+    "PurchaseOrderDate": "2026-08-14",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000124",
+        "PurchaseOrderItem": "10",
+        "Material": "SF-GLV-0012",
+        "PurchaseOrderItemText": "Cut Resistant Gloves Level 5",
+        "OrderQuantity": 850,
+        "PurchaseOrderQuantityUnit": "PR",
+        "NetPriceAmount": 310,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000125",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300001",
+    "PurchaseOrderDate": "2026-08-20",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000125",
+        "PurchaseOrderItem": "10",
+        "Material": "RM-STL-0042",
+        "PurchaseOrderItemText": "MS Steel Plate 6mm 1250x2500",
+        "OrderQuantity": 90,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 2450,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000126",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300002",
+    "PurchaseOrderDate": "2026-08-25",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000126",
+        "PurchaseOrderItem": "10",
+        "Material": "EL-CBL-0450",
+        "PurchaseOrderItemText": "Armoured Cable 4C x 16 sq mm",
+        "OrderQuantity": 185,
+        "PurchaseOrderQuantityUnit": "M",
+        "NetPriceAmount": 612,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000126",
+        "PurchaseOrderItem": "20",
+        "Material": "EL-MCB-0063",
+        "PurchaseOrderItemText": "MCB 63A Triple Pole",
+        "OrderQuantity": 70,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1385,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000127",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300006",
+    "PurchaseOrderDate": "2026-08-31",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000127",
+        "PurchaseOrderItem": "10",
+        "Material": "MC-BRG-6205",
+        "PurchaseOrderItemText": "Deep Groove Ball Bearing 6205-2RS",
+        "OrderQuantity": 450,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 286,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000128",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300008",
+    "PurchaseOrderDate": "2026-09-02",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000128",
+        "PurchaseOrderItem": "10",
+        "Material": "OF-CHR-ERG",
+        "PurchaseOrderItemText": "Ergonomic Office Chair",
+        "OrderQuantity": 160,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 8900,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000129",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300009",
+    "PurchaseOrderDate": "2026-09-08",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT07",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000129",
+        "PurchaseOrderItem": "10",
+        "Material": "TL-DRL-1300",
+        "PurchaseOrderItemText": "Cordless Drill Driver 18V Kit",
+        "OrderQuantity": 56,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 14800,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000130",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P02",
+    "Supplier": "17300009",
+    "PurchaseOrderDate": "2026-09-15",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT07",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000130",
+        "PurchaseOrderItem": "10",
+        "Material": "TL-WRN-SET",
+        "PurchaseOrderItemText": "Torque Wrench Set 1/2\"",
+        "OrderQuantity": 37,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 22500,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000131",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300001",
+    "PurchaseOrderDate": "2026-09-17",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000131",
+        "PurchaseOrderItem": "10",
+        "Material": "RM-STL-0042",
+        "PurchaseOrderItemText": "MS Steel Plate 6mm 1250x2500",
+        "OrderQuantity": 10,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 2450,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000131",
+        "PurchaseOrderItem": "20",
+        "Material": "RM-STL-0207",
+        "PurchaseOrderItemText": "GI Sheet 1.2mm",
+        "OrderQuantity": 45,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1890,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000132",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P03",
+    "Supplier": "17300003",
+    "PurchaseOrderDate": "2026-09-22",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000132",
+        "PurchaseOrderItem": "10",
+        "Material": "PK-PAL-1210",
+        "PurchaseOrderItemText": "Heat-Treated Wooden Pallet 1200x1000",
+        "OrderQuantity": 95,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1150,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000132",
+        "PurchaseOrderItem": "20",
+        "Material": "PK-STR-0020",
+        "PurchaseOrderItemText": "Stretch Wrap Film 23 micron",
+        "OrderQuantity": 3,
+        "PurchaseOrderQuantityUnit": "RL",
+        "NetPriceAmount": 1460,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000133",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300005",
+    "PurchaseOrderDate": "2026-09-28",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT60",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000133",
+        "PurchaseOrderItem": "10",
+        "Material": "CH-ACD-0030",
+        "PurchaseOrderItemText": "Sulphuric Acid 98% (Drum)",
+        "OrderQuantity": 2,
+        "PurchaseOrderQuantityUnit": "DR",
+        "NetPriceAmount": 9850,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000133",
+        "PurchaseOrderItem": "20",
+        "Material": "CH-SOL-0011",
+        "PurchaseOrderItemText": "Industrial Solvent IPA 99%",
+        "OrderQuantity": 550,
+        "PurchaseOrderQuantityUnit": "L",
+        "NetPriceAmount": 142,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000133",
+        "PurchaseOrderItem": "30",
+        "Material": "CH-LUB-0450",
+        "PurchaseOrderItemText": "Hydraulic Oil ISO VG 68",
+        "OrderQuantity": 875,
+        "PurchaseOrderQuantityUnit": "L",
+        "NetPriceAmount": 236,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000134",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300002",
+    "PurchaseOrderDate": "2026-10-05",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000134",
+        "PurchaseOrderItem": "10",
+        "Material": "EL-CBL-0450",
+        "PurchaseOrderItemText": "Armoured Cable 4C x 16 sq mm",
+        "OrderQuantity": 125,
+        "PurchaseOrderQuantityUnit": "M",
+        "NetPriceAmount": 612,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000134",
+        "PurchaseOrderItem": "20",
+        "Material": "EL-MCB-0063",
+        "PurchaseOrderItemText": "MCB 63A Triple Pole",
+        "OrderQuantity": 30,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 1385,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000134",
+        "PurchaseOrderItem": "30",
+        "Material": "EL-CTR-2201",
+        "PurchaseOrderItemText": "Siemens Contactor 3RT2026 24V",
+        "OrderQuantity": 170,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 4120,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000135",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300010",
+    "PurchaseOrderDate": "2026-10-08",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT30",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000135",
+        "PurchaseOrderItem": "10",
+        "Material": "SF-SHO-0007",
+        "PurchaseOrderItemText": "Safety Shoes Steel Toe",
+        "OrderQuantity": 190,
+        "PurchaseOrderQuantityUnit": "PR",
+        "NetPriceAmount": 1650,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  },
+  {
+    "PurchaseOrder": "4500000136",
+    "CompanyCode": "IN01",
+    "PurchaseOrderType": "NB",
+    "PurchasingOrganization": "IN10",
+    "PurchasingGroup": "P01",
+    "Supplier": "17300006",
+    "PurchaseOrderDate": "2026-10-12",
+    "DocumentCurrency": "INR",
+    "PaymentTerms": "NT45",
+    "PurchasingProcessingStatus": "05",
+    "to_PurchaseOrderItem": [
+      {
+        "PurchaseOrder": "4500000136",
+        "PurchaseOrderItem": "10",
+        "Material": "MC-SEAL-0080",
+        "PurchaseOrderItemText": "Oil Seal 80x100x10",
+        "OrderQuantity": 375,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 145,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000136",
+        "PurchaseOrderItem": "20",
+        "Material": "MC-BRG-22210",
+        "PurchaseOrderItemText": "Spherical Roller Bearing 22210",
+        "OrderQuantity": 85,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 3420,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      },
+      {
+        "PurchaseOrder": "4500000136",
+        "PurchaseOrderItem": "30",
+        "Material": "MC-BRG-6205",
+        "PurchaseOrderItemText": "Deep Groove Ball Bearing 6205-2RS",
+        "OrderQuantity": 625,
+        "PurchaseOrderQuantityUnit": "EA",
+        "NetPriceAmount": 286,
+        "NetPriceQuantity": 1,
+        "DocumentCurrency": "INR",
+        "Plant": "HY01",
+        "TaxCode": "G8"
+      }
+    ]
+  }
+]

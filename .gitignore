@@ -1,0 +1,12 @@
+node_modules/
+ui/node_modules/
+app/ui/
+gen/
+mta_archives/
+*.mtar
+.env
+*.sqlite
+__pycache__/
+.pytest_cache/
+ml-service/model/
+.DS_Store

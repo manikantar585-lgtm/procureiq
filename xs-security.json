@@ -1,0 +1,19 @@
+{
+  "xsappname": "procureiq",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    { "name": "$XSAPPNAME.Clerk", "description": "Capture and view invoices" },
+    { "name": "$XSAPPNAME.Approver", "description": "Approve, reject and post invoices" },
+    { "name": "$XSAPPNAME.Manager", "description": "Release high-value and critical invoices, audit" }
+  ],
+  "role-templates": [
+    { "name": "Clerk", "scope-references": ["$XSAPPNAME.Clerk"] },
+    { "name": "Approver", "scope-references": ["$XSAPPNAME.Clerk", "$XSAPPNAME.Approver"] },
+    { "name": "Manager", "scope-references": ["$XSAPPNAME.Clerk", "$XSAPPNAME.Approver", "$XSAPPNAME.Manager"] }
+  ],
+  "role-collections": [
+    { "name": "ProcureIQ_Clerk", "role-template-references": ["$XSAPPNAME.Clerk"] },
+    { "name": "ProcureIQ_Approver", "role-template-references": ["$XSAPPNAME.Approver"] },
+    { "name": "ProcureIQ_Manager", "role-template-references": ["$XSAPPNAME.Manager"] }
+  ]
+}

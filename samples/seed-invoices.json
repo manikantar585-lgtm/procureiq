@@ -1,0 +1,170 @@
+[
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "BSC_26-704_7215.pdf",
+    "text": "TAX INVOICE\nBharat Steel Components Pvt Ltd\nPlot 42, IDA Jeedimetla, Hyderabad, Telangana 500055\nGSTIN: 36AABCB1234F1Z5\n\nInvoice No: BSC/26-704/7215\nInvoice Date: 04-05-2026\nDue Date: 03-06-2026\nPO Number: 4500000101\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 RM-STL-0042 MS Steel Plate 6mm 1250x2500 120 EA 2,450.00 2,94,000.00\n2 RM-STL-0118 SS304 Round Bar 25mm 75 KG 268.00 20,100.00\n\nSub Total: 3,14,100.00\nCGST 9% + SGST 9%: 56,538.00\nGrand Total (INR): 3,70,638.00\n\nBank Account: HDFC0000412-50200012345678\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "DEC_26-581_3705.pdf",
+    "text": "TAX INVOICE\nDeccan Electricals & Controls\n7-1-58, Rashtrapati Road, Secunderabad, Telangana 500003\nGSTIN: 36AAFCD7781M1Z2\n\nInvoice No: DEC/26-581/3705\nInvoice Date: 04-05-2026\nDue Date: 18-06-2026\nPO Number: 4500000102\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 EL-MCB-0063 MCB 63A Triple Pole 70 EA 1,385.00 96,950.00\n2 EL-CBL-0450 Armoured Cable 4C x 16 sq mm 140 M 612.00 85,680.00\n3 EL-CTR-2201 Siemens Contactor 3RT2026 24V 195 EA 4,120.00 8,03,400.00\n\nSub Total: 9,86,030.00\nCGST 9% + SGST 9%: 1,77,485.40\nGrand Total (INR): 11,63,515.40\n\nBank Account: ICIC0001290-129005001876\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "SLP_26-441_6213.pdf",
+    "text": "TAX INVOICE\nSri Lakshmi Packaging Solutions\nAutonagar Industrial Estate, Vijayawada, Andhra Pradesh 520007\nGSTIN: 37AAKFS5512P1Z9\n\nInvoice No: SLP/26-441/6213\nInvoice Date: 09-05-2026\nDue Date: 08-06-2026\nPO Number: 4500000103\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 PK-STR-0020 Stretch Wrap Film 23 micron 4 RL 1,460.00 5,840.00\n2 PK-PAL-1210 Heat-Treated Wooden Pallet 1200x1000 155 EA 1,150.00 1,78,250.00\n\nSub Total: 1,84,090.00\nIGST 18%: 33,136.20\nGrand Total (INR): 2,17,226.20\n\nBank Account: SBIN0004471-38811290045\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "PBI_26-558_5045.pdf",
+    "text": "TAX INVOICE\nPrecision Bearings India\nMIDC Bhosari, Pune, Maharashtra 411026\nGSTIN: 27AAGCP9014N1ZA\n\nInvoice No: PBI/26-558/5045\nInvoice Date: 28-05-2026\nDue Date: 12-07-2026\nPO Number: 4500000105\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 MC-SEAL-0080 Oil Seal 80x100x10 75 EA 145.00 10,875.00\n2 MC-BRG-6205 Deep Groove Ball Bearing 6205-2RS 775 EA 286.00 2,21,650.00\n\nSub Total: 2,32,525.00\nIGST 18%: 41,854.50\nGrand Total (INR): 2,74,379.50\n\nBank Account: HDFC0001855-50200077120034\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "KLF_26-349_5068.pdf",
+    "text": "TAX INVOICE\nKrishna Logistics & Freight\nPlot 9, Autonagar, Hayathnagar, Hyderabad 501505\nGSTIN: 36AAMFK2241R1Z7\n\nInvoice No: KLF/26-349/5068\nInvoice Date: 25-05-2026\nDue Date: 09-06-2026\nPO Number: 4500000106\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 SV-LOG-LTL Part Load Freight per Tonne 6 TO 4,200.00 25,200.00\n\nSub Total: 25,200.00\nCGST 9% + SGST 9%: 4,536.00\nGrand Total (INR): 29,736.00\n\nBank Account: AXIS0000671-917020045512390\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "NOS_26-441_2476.pdf",
+    "text": "TAX INVOICE\nNimbus Office Supplies\nAmeerpet X Roads, Hyderabad, Telangana 500016\nGSTIN: 36ABCPN8812E1Z3\n\nInvoice No: NOS/26-441/2476\nInvoice Date: 04-06-2026\nDue Date: 04-07-2026\nPO Number: 4500000107\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 OF-PAP-A4 A4 Copier Paper 75 GSM (Ream) 650 RM 245.00 1,59,250.00\n2 OF-CHR-ERG Ergonomic Office Chair 50 EA 8,900.00 4,45,000.00\n\nSub Total: 6,04,250.00\nCGST 9% + SGST 9%: 1,08,765.00\nGrand Total (INR): 7,13,015.00\n\nBank Account: SBIN0020063-40118852201\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "VSE_26-778_5656.pdf",
+    "text": "TAX INVOICE\nVertex Safety Equipment\nAmbattur Industrial Estate, Chennai, Tamil Nadu 600058\nGSTIN: 33AAHCV4407G1ZM\n\nInvoice No: VSE/26-778/5656\nInvoice Date: 11-06-2026\nDue Date: 11-07-2026\nPO Number: 4500000108\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 SF-SHO-0007 Safety Shoes Steel Toe 115 PR 1,650.00 1,89,750.00\n2 SF-HLM-0001 Safety Helmet ISI Marked 500 EA 395.00 1,97,500.00\n\nSub Total: 3,87,250.00\nIGST 18%: 69,705.00\nGrand Total (INR): 4,56,955.00\n\nBank Account: IOBA0000384-038402000017221\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "TNV_26-578_2380.pdf",
+    "text": "TAX INVOICE\nTechNova IT Services LLP\n3rd Floor, Prestige Tech Park, Outer Ring Road, Bengaluru 560103\nGSTIN: 29AAQFT3390L1ZK\n\nInvoice No: TNV/26-578/2380\nInvoice Date: 12-06-2026\nDue Date: 27-06-2026\nPO Number: 4500000109\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 SV-IT-NET Network Security Audit 1 EA 1,45,000.00 1,45,000.00\n\nSub Total: 1,45,000.00\nIGST 18%: 26,100.00\nGrand Total (INR): 1,71,100.00\n\nBank Account: KKBK0008042-9412558830\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "BSC_26-318_6543.pdf",
+    "text": "TAX INVOICE\nBharat Steel Components Pvt Ltd\nPlot 42, IDA Jeedimetla, Hyderabad, Telangana 500055\nGSTIN: 36AABCB1234F1Z5\n\nInvoice No: BSC/26-318/6543\nInvoice Date: 17-06-2026\nDue Date: 17-07-2026\nPO Number: 4500000110\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 RM-STL-0042 MS Steel Plate 6mm 1250x2500 50 EA 2,450.00 1,22,500.00\n2 RM-STL-0118 SS304 Round Bar 25mm 175 KG 268.00 46,900.00\n3 RM-STL-0207 GI Sheet 1.2mm 30 EA 1,890.00 56,700.00\n\nSub Total: 2,26,100.00\nCGST 9% + SGST 9%: 40,698.00\nGrand Total (INR): 2,66,798.00\n\nBank Account: HDFC0000412-50200012345678\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "PBI_26-992_8258.pdf",
+    "text": "TAX INVOICE\nPrecision Bearings India\nMIDC Bhosari, Pune, Maharashtra 411026\nGSTIN: 27AAGCP9014N1ZA\n\nInvoice No: PBI/26-992/8258\nInvoice Date: 26-06-2026\nDue Date: 10-08-2026\nPO Number: 4500000112\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 MC-BRG-22210 Spherical Roller Bearing 22210 105 EA 3,420.00 3,59,100.00\n2 MC-SEAL-0080 Oil Seal 80x100x10 825 EA 145.00 1,19,625.00\n\nSub Total: 4,78,725.00\nIGST 18%: 86,170.50\nGrand Total (INR): 5,64,895.50\n\nBank Account: HDFC0001855-50200077120034\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "SLP_26-661_5363.pdf",
+    "text": "TAX INVOICE\nSri Lakshmi Packaging Solutions\nAutonagar Industrial Estate, Vijayawada, Andhra Pradesh 520007\nGSTIN: 37AAKFS5512P1Z9\n\nInvoice No: SLP/26-661/5363\nInvoice Date: 02-07-2026\nDue Date: 01-08-2026\nPO Number: 4500000113\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 PK-BOX-0310 Corrugated Box 5-Ply 600x400x400 450 EA 78.00 35,100.00\n2 PK-PAL-1210 Heat-Treated Wooden Pallet 1200x1000 125 EA 1,150.00 1,43,750.00\n3 PK-STR-0020 Stretch Wrap Film 23 micron 6 RL 1,460.00 8,760.00\n\nSub Total: 1,87,610.00\nIGST 18%: 33,769.80\nGrand Total (INR): 2,21,379.80\n\nBank Account: SBIN0004471-38811290045\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Posted",
+    "fileName": "GCL_26-354_2713.pdf",
+    "text": "TAX INVOICE\nGodavari Chemicals Ltd\nIndustrial Area, Kadiyam Road, Rajahmundry, Andhra Pradesh 533103\nGSTIN: 37AABCG6623Q1Z1\n\nInvoice No: GCL/26-354/2713\nInvoice Date: 09-07-2026\nDue Date: 07-09-2026\nPO Number: 4500000114\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 CH-LUB-0450 Hydraulic Oil ISO VG 68 500 L 236.00 1,18,000.00\n2 CH-SOL-0011 Industrial Solvent IPA 99% 550 L 142.00 78,100.00\n\nSub Total: 1,96,100.00\nIGST 18%: 35,298.00\nGrand Total (INR): 2,31,398.00\n\nBank Account: UBIN0531221-312201010087766\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Matched",
+    "fileName": "VSE_26-601_6071.pdf",
+    "text": "TAX INVOICE\nVertex Safety Equipment\nAmbattur Industrial Estate, Chennai, Tamil Nadu 600058\nGSTIN: 33AAHCV4407G1ZM\n\nInvoice No: VSE/26-601/6071\nInvoice Date: 09-07-2026\nDue Date: 08-08-2026\nPO Number: 4500000115\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 SF-HLM-0001 Safety Helmet ISI Marked 700 EA 395.00 2,76,500.00\n\nSub Total: 2,76,500.00\nIGST 18%: 49,770.00\nGrand Total (INR): 3,26,270.00\n\nBank Account: IOBA0000384-038402000017221\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Matched",
+    "fileName": "NOS_26-995_5725.pdf",
+    "text": "TAX INVOICE\nNimbus Office Supplies\nAmeerpet X Roads, Hyderabad, Telangana 500016\nGSTIN: 36ABCPN8812E1Z3\n\nInvoice No: NOS/26-995/5725\nInvoice Date: 13-07-2026\nDue Date: 12-08-2026\nPO Number: 4500000116\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 OF-TNR-88A Toner Cartridge 88A 85 EA 2,950.00 2,50,750.00\n\nSub Total: 2,50,750.00\nCGST 9% + SGST 9%: 45,135.00\nGrand Total (INR): 2,95,885.00\n\nBank Account: SBIN0020063-40118852201\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Matched",
+    "fileName": "DEC_26-320_1883.pdf",
+    "text": "TAX INVOICE\nDeccan Electricals & Controls\n7-1-58, Rashtrapati Road, Secunderabad, Telangana 500003\nGSTIN: 36AAFCD7781M1Z2\n\nInvoice No: DEC/26-320/1883\nInvoice Date: 28-07-2026\nDue Date: 11-09-2026\nPO Number: 4500000119\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 EL-CBL-0450 Armoured Cable 4C x 16 sq mm 55 M 612.00 33,660.00\n2 EL-CTR-2201 Siemens Contactor 3RT2026 24V 90 EA 4,120.00 3,70,800.00\n3 EL-MCB-0063 MCB 63A Triple Pole 200 EA 1,385.00 2,77,000.00\n\nSub Total: 6,81,460.00\nCGST 9% + SGST 9%: 1,22,662.80\nGrand Total (INR): 8,04,122.80\n\nBank Account: ICIC0001290-129005001876\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Matched",
+    "fileName": "PBI_26-593_9078.pdf",
+    "text": "TAX INVOICE\nPrecision Bearings India\nMIDC Bhosari, Pune, Maharashtra 411026\nGSTIN: 27AAGCP9014N1ZA\n\nInvoice No: PBI/26-593/9078\nInvoice Date: 04-08-2026\nDue Date: 18-09-2026\nPO Number: 4500000120\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 MC-BRG-6205 Deep Groove Ball Bearing 6205-2RS 550 EA 286.00 1,57,300.00\n2 MC-BRG-22210 Spherical Roller Bearing 22210 195 EA 3,420.00 6,66,900.00\n\nSub Total: 8,24,200.00\nIGST 18%: 1,48,356.00\nGrand Total (INR): 9,72,556.00\n\nBank Account: HDFC0001855-50200077120034\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "price-variance",
+    "finalStatus": null,
+    "fileName": "KLF_26-618_4859.pdf",
+    "text": "TAX INVOICE\nKrishna Logistics & Freight\nPlot 9, Autonagar, Hayathnagar, Hyderabad 501505\nGSTIN: 36AAMFK2241R1Z7\n\nInvoice No: KLF/26-618/4859\nInvoice Date: 19-07-2026\nDue Date: 03-08-2026\nPO Number: 4500000117\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 SV-LOG-LTL Part Load Freight per Tonne 3 TO 4,515.00 13,545.00\n\nSub Total: 13,545.00\nCGST 9% + SGST 9%: 2,438.10\nGrand Total (INR): 15,983.10\n\nBank Account: AXIS0000671-917020045512390\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "price-variance",
+    "finalStatus": "Rejected",
+    "fileName": "TNV_26-636_9445.pdf",
+    "text": "TAX INVOICE\nTechNova IT Services LLP\n3rd Floor, Prestige Tech Park, Outer Ring Road, Bengaluru 560103\nGSTIN: 29AAQFT3390L1ZK\n\nInvoice No: TNV/26-636/9445\nInvoice Date: 09-08-2026\nDue Date: 24-08-2026\nPO Number: 4500000121\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 SV-IT-AMC SAP Basis Support AMC - Monthly 1 MON 2,07,200.00 2,07,200.00\n\nSub Total: 2,07,200.00\nIGST 18%: 37,296.00\nGrand Total (INR): 2,44,496.00\n\nBank Account: KKBK0008042-9412558830\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "qty-over-gr",
+    "finalStatus": null,
+    "fileName": "GCL_26-697_7084.pdf",
+    "text": "TAX INVOICE\nGodavari Chemicals Ltd\nIndustrial Area, Kadiyam Road, Rajahmundry, Andhra Pradesh 533103\nGSTIN: 37AABCG6623Q1Z1\n\nInvoice No: GCL/26-697/7084\nInvoice Date: 19-05-2026\nDue Date: 18-07-2026\nPO Number: 4500000104\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 CH-LUB-0450 Hydraulic Oil ISO VG 68 150 L 236.00 35,400.00\n2 CH-SOL-0011 Industrial Solvent IPA 99% 900 L 142.00 1,27,800.00\n\nSub Total: 1,63,200.00\nIGST 18%: 29,376.00\nGrand Total (INR): 1,92,576.00\n\nBank Account: UBIN0531221-312201010087766\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "qty-over-gr",
+    "finalStatus": null,
+    "fileName": "BSC_26-832_9637.pdf",
+    "text": "TAX INVOICE\nBharat Steel Components Pvt Ltd\nPlot 42, IDA Jeedimetla, Hyderabad, Telangana 500055\nGSTIN: 36AABCB1234F1Z5\n\nInvoice No: BSC/26-832/9637\nInvoice Date: 27-07-2026\nDue Date: 26-08-2026\nPO Number: 4500000118\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 RM-STL-0042 MS Steel Plate 6mm 1250x2500 75 EA 2,450.00 1,83,750.00\n2 RM-STL-0207 GI Sheet 1.2mm 25 EA 1,890.00 47,250.00\n\nSub Total: 2,31,000.00\nCGST 9% + SGST 9%: 41,580.00\nGrand Total (INR): 2,72,580.00\n\nBank Account: HDFC0000412-50200012345678\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "duplicate",
+    "finalStatus": null,
+    "fileName": "SLP_26-441_6213.pdf",
+    "text": "TAX INVOICE\nSri Lakshmi Packaging Solutions\nAutonagar Industrial Estate, Vijayawada, Andhra Pradesh 520007\nGSTIN: 37AAKFS5512P1Z9\n\nInvoice No: SLP/26-441/6213\nInvoice Date: 18-05-2026\nDue Date: 08-06-2026\nPO Number: 4500000103\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 PK-STR-0020 Stretch Wrap Film 23 micron 4 RL 1,460.00 5,840.00\n2 PK-PAL-1210 Heat-Treated Wooden Pallet 1200x1000 155 EA 1,150.00 1,78,250.00\n\nSub Total: 1,84,090.00\nIGST 18%: 33,136.20\nGrand Total (INR): 2,17,226.20\n\nBank Account: SBIN0004471-38811290045\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "bank-mismatch",
+    "finalStatus": null,
+    "fileName": "SLP_26-186_5436.pdf",
+    "text": "TAX INVOICE\nSri Lakshmi Packaging Solutions\nAutonagar Industrial Estate, Vijayawada, Andhra Pradesh 520007\nGSTIN: 37AAKFS5512P1Z9\n\nInvoice No: SLP/26-186/5436\nInvoice Date: 16-08-2026\nDue Date: 15-09-2026\nPO Number: 4500000122\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 PK-STR-0020 Stretch Wrap Film 23 micron 3 RL 1,460.00 4,380.00\n2 PK-BOX-0310 Corrugated Box 5-Ply 600x400x400 50 EA 78.00 3,900.00\n3 PK-PAL-1210 Heat-Treated Wooden Pallet 1200x1000 25 EA 1,150.00 28,750.00\n\nSub Total: 37,030.00\nIGST 18%: 6,665.40\nGrand Total (INR): 43,695.40\n\nBank Account: IDFB0080214-10084471920\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "gstin-mismatch",
+    "finalStatus": null,
+    "fileName": "GCL_26-295_2707.pdf",
+    "text": "TAX INVOICE\nGodavari Chemicals Ltd\nIndustrial Area, Kadiyam Road, Rajahmundry, Andhra Pradesh 533103\nGSTIN: 36AAACX9921B1Z0\n\nInvoice No: GCL/26-295/2707\nInvoice Date: 16-08-2026\nDue Date: 15-10-2026\nPO Number: 4500000123\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 CH-SOL-0011 Industrial Solvent IPA 99% 875 L 142.00 1,24,250.00\n\nSub Total: 1,24,250.00\nIGST 18%: 22,365.00\nGrand Total (INR): 1,46,615.00\n\nBank Account: UBIN0531221-312201010087766\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "new-vendor-threshold",
+    "finalStatus": null,
+    "fileName": "AIT_26-133_7727.pdf",
+    "text": "TAX INVOICE\nApex Industrial Tools\nShed 14, Balanagar Industrial Area, Hyderabad 500037\nGSTIN: 36AAZFA7710H1Z4\n\nInvoice No: AIT/26-133/7727\nInvoice Date: 23-09-2026\nDue Date: 30-09-2026\nPO Number: 4500000129\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 TL-DRL-1300 Cordless Drill Driver 18V Kit 56 EA 14,800.00 8,28,800.00\n\nSub Total: 8,28,800.00\nCGST 9% + SGST 9%: 1,49,184.00\nGrand Total (INR): 9,77,984.00\n\nBank Account: YESB0000213-021388700001462\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "new-vendor-threshold",
+    "finalStatus": null,
+    "fileName": "AIT_26-950_3568.pdf",
+    "text": "TAX INVOICE\nApex Industrial Tools\nShed 14, Balanagar Industrial Area, Hyderabad 500037\nGSTIN: 36AAZFA7710H1Z4\n\nInvoice No: AIT/26-950/3568\nInvoice Date: 23-09-2026\nDue Date: 30-09-2026\nPO Number: 4500000130\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 TL-WRN-SET Torque Wrench Set 1/2\" 37 EA 22,500.00 8,32,500.00\n\nSub Total: 8,32,500.00\nCGST 9% + SGST 9%: 1,49,850.00\nGrand Total (INR): 9,82,350.00\n\nBank Account: YESB0000213-021388700001462\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "po-not-found",
+    "finalStatus": null,
+    "fileName": "VSE_26-509_6792.pdf",
+    "text": "TAX INVOICE\nVertex Safety Equipment\nAmbattur Industrial Estate, Chennai, Tamil Nadu 600058\nGSTIN: 33AAHCV4407G1ZM\n\nInvoice No: VSE/26-509/6792\nInvoice Date: 26-08-2026\nDue Date: 25-09-2026\nPO Number: 4500009999\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 SF-GLV-0012 Cut Resistant Gloves Level 5 850 PR 310.00 2,63,500.00\n\nSub Total: 2,63,500.00\nIGST 18%: 47,430.00\nGrand Total (INR): 3,10,930.00\n\nBank Account: IOBA0000384-038402000017221\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Approved",
+    "fileName": "BSC_26-729_5802.pdf",
+    "text": "TAX INVOICE\nBharat Steel Components Pvt Ltd\nPlot 42, IDA Jeedimetla, Hyderabad, Telangana 500055\nGSTIN: 36AABCB1234F1Z5\n\nInvoice No: BSC/26-729/5802\nInvoice Date: 26-08-2026\nDue Date: 25-09-2026\nPO Number: 4500000125\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 RM-STL-0042 MS Steel Plate 6mm 1250x2500 54 EA 2,450.00 1,32,300.00\n\nSub Total: 1,32,300.00\nCGST 9% + SGST 9%: 23,814.00\nGrand Total (INR): 1,56,114.00\n\nBank Account: HDFC0000412-50200012345678\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  },
+  {
+    "scenario": "clean",
+    "finalStatus": "Approved",
+    "fileName": "DEC_26-586_9290.pdf",
+    "text": "TAX INVOICE\nDeccan Electricals & Controls\n7-1-58, Rashtrapati Road, Secunderabad, Telangana 500003\nGSTIN: 36AAFCD7781M1Z2\n\nInvoice No: DEC/26-586/9290\nInvoice Date: 01-09-2026\nDue Date: 16-10-2026\nPO Number: 4500000126\nBill To: Aurora Industries Ltd, Survey No. 115, Genome Valley, Shamirpet, Hyderabad, Telangana 500078\nBuyer GSTIN: 36AAACA4521K1ZQ\n\nSl Item Code Description Qty Unit Rate Amount\n1 EL-CBL-0450 Armoured Cable 4C x 16 sq mm 185 M 612.00 1,13,220.00\n2 EL-MCB-0063 MCB 63A Triple Pole 70 EA 1,385.00 96,950.00\n\nSub Total: 2,10,170.00\nCGST 9% + SGST 9%: 37,830.60\nGrand Total (INR): 2,48,000.60\n\nBank Account: ICIC0001290-129005001876\nPayment by NEFT/RTGS only. Subject to Hyderabad jurisdiction."
+  }
+]

@@ -1,0 +1,92 @@
+{
+  "name": "procureiq",
+  "version": "1.0.0",
+  "description": "ProcureIQ - Agentic AI Procure-to-Pay Copilot for SAP S/4HANA, built on SAP CAP",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "dev": "cds watch",
+    "test": "node --test \"test/**/*.test.js\"",
+    "build:ui": "npm --prefix ui run build",
+    "samples": "node scripts/generate-demo-data.js",
+    "test:ml": "cd ml-service && pytest -q",
+    "dev:ml": "cd ml-service && uvicorn app:app --port 8000",
+    "dev:ui": "npm --prefix ui run dev"
+  },
+  "dependencies": {
+    "@cap-js/hana": "^3.1.2",
+    "@cap-js/sqlite": "^3.1.2",
+    "@sap/cds": "^10",
+    "express": "^4",
+    "pdf-parse": "^2.4.5",
+    "pdfkit": "^0.20.2"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^1.0.2",
+    "@sap/cds-dk": "^10"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": ":memory:"
+        }
+      },
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "clerk": {
+            "password": "clerk",
+            "roles": [
+              "Clerk"
+            ],
+            "attr": {
+              "name": "Anita Rao (AP Clerk)"
+            }
+          },
+          "approver": {
+            "password": "approver",
+            "roles": [
+              "Clerk",
+              "Approver"
+            ],
+            "attr": {
+              "name": "Ravi Kumar (AP Lead)"
+            }
+          },
+          "manager": {
+            "password": "manager",
+            "roles": [
+              "Clerk",
+              "Approver",
+              "Manager"
+            ],
+            "attr": {
+              "name": "Priya Sharma (Finance Manager)"
+            }
+          },
+          "*": false
+        }
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      }
+    },
+    "server": {
+      "body_parser": {
+        "limit": "15mb"
+      }
+    }
+  }
+}

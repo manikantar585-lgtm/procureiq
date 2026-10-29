@@ -1,0 +1,62 @@
+_schema-version: '3.1'
+ID: procureiq
+version: 1.0.0
+description: ProcureIQ - Agentic AI Procure-to-Pay Copilot for SAP S/4HANA (SAP BTP Cloud Foundry)
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npm --prefix ui ci
+        - npm --prefix ui run build
+        - npx cds build --production
+        - cp -r samples gen/srv/samples
+        - mkdir -p gen/srv/app && cp -r app/ui gen/srv/app/ui
+
+modules:
+  - name: procureiq-srv
+    type: nodejs
+    path: gen/srv
+    parameters: { buildpack: nodejs_buildpack, memory: 512M }
+    properties:
+      SAP_MODE: tenant
+      ML_SERVICE_URL: ~{ml-api/url}
+    requires:
+      - name: procureiq-db
+      - name: procureiq-auth
+      - name: procureiq-destination
+      - name: ml-api
+    provides:
+      - name: srv-api
+        properties: { srv-url: '${default-url}' }
+
+  - name: procureiq-db-deployer
+    type: hdb
+    path: gen/db
+    parameters: { buildpack: nodejs_buildpack }
+    requires:
+      - name: procureiq-db
+
+  - name: procureiq-ml
+    type: python
+    path: ml-service
+    parameters: { buildpack: python_buildpack, memory: 512M, command: 'python train.py && uvicorn app:app --host 0.0.0.0 --port $PORT' }
+    provides:
+      - name: ml-api
+        properties: { url: '${default-url}' }
+
+resources:
+  - name: procureiq-db
+    type: com.sap.xs.hdi-container
+    parameters: { service: hana, service-plan: hdi-shared }
+  - name: procureiq-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+  - name: procureiq-destination
+    type: org.cloudfoundry.managed-service
+    parameters: { service: destination, service-plan: lite }

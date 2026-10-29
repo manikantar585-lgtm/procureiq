@@ -1,0 +1,17 @@
+# One command demo:  docker compose up --build   ->  http://localhost:4004
+services:
+  ml:
+    build: ./ml-service
+    ports: ["8000:8000"]
+  srv:
+    build: .
+    ports: ["4004:4004"]
+    depends_on:
+      ml:
+        condition: service_healthy
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      ML_SERVICE_URL: http://ml:8000
+      SAP_MODE: ${SAP_MODE:-mock}
