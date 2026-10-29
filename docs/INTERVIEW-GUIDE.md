@@ -6,7 +6,7 @@
 - Designed a GenAI document pipeline (LLM JSON extraction with arithmetic validation) that processes supplier invoices end-to-end in **under 1 second**. It achieves an **~82 % touchless 3-way match** against live S/4HANA purchase orders and goods receipts.
 - Developed a hybrid **IsolationForest + Gradient Boosting** fraud model (FastAPI, scikit-learn) with perturbation-based explanations, reaching **ROC-AUC 0.99** on held-out data. It is combined with 14 explainable rules that catch duplicates, bank-account fraud, split invoicing and over-billing.
 - Implemented a **tool-calling LLM agent** (6 tools over SAP APIs, the invoice ledger and BM25 RAG over policy) with a provider-agnostic client (Gemini, OpenAI, Groq, Ollama, Claude, SAP AI Core) and an offline fallback.
-- Shipped with role-based segregation of duties, an immutable audit trail, Docker Compose, GitHub Actions CI and **33 automated tests**.
+- Shipped with role-based segregation of duties, an immutable audit trail, Docker Compose, GitHub Actions CI and **62 automated tests**.
 
 ## 60-second pitch
 

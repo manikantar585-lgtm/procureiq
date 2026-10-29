@@ -1,5 +1,6 @@
 'use strict';
 // Integration test: boots the CAP server in-process (in-memory SQLite, demo data seeded through the real pipeline)
+process.env.CDS_ENV = 'test'; // [test] profile = in-memory database; must be set before cds loads its config
 const { describe, it } = require('node:test');
 const cds = require('@sap/cds');
 const fs = require('fs');

@@ -1,7 +1,7 @@
-import { Tag, ObjectStatus, Icon, Text, Title, FlexBox } from '@ui5/webcomponents-react';
+import { Tag, ObjectStatus, Icon, Text, Title, FlexBox, Label, TextArea } from '@ui5/webcomponents-react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
-import { RISK_STATE, STATUS_DESIGN } from '../format';
+import { RISK_STATE, STATUS_DESIGN, STATUS_TEXT } from '../format';
 
 marked.setOptions({ gfm: true, breaks: true });
 
@@ -19,8 +19,26 @@ export function RiskTag({ level, score }) {
   );
 }
 
-export function StatusTag({ status }) {
-  return <Tag design={STATUS_DESIGN[status] || 'Neutral'} hideStateIcon>{status}</Tag>;
+export function StatusTag({ status, escalated }) {
+  return (
+    <FlexBox alignItems="Center" style={{ gap: '0.25rem' }}>
+      <Tag design={STATUS_DESIGN[status] || 'Neutral'} hideStateIcon>{STATUS_TEXT[status] || status}</Tag>
+      {escalated && ['Exception', 'OnHold'].includes(status) && <Icon name="lateness" className="sla-icon" accessibleName="SLA breached - escalated" showTooltip />}
+    </FlexBox>
+  );
+}
+
+/** AnalyticalTable fires onRowClick for the selection checkbox cell too - use this to keep row navigation off the checkbox. */
+export const isSelectionCellClick = (e) => !!e.target?.closest?.('[data-selection-cell="true"]');
+
+/** Small confirm-with-text dialog body used for decisions that need a reason. */
+export function ReasonField({ id, label, value, onInput, placeholder, rows = 4 }) {
+  return (
+    <>
+      <Label for={id} style={{ marginTop: '0.75rem', display: 'block' }}>{label}</Label>
+      <TextArea id={id} rows={rows} value={value} onInput={(e) => onInput(e.target.value)} style={{ width: '100%' }} placeholder={placeholder} />
+    </>
+  );
 }
 
 export function MatchStatus({ status }) {

@@ -14,6 +14,8 @@ import Copilot from './pages/Copilot.jsx';
 import Vendors from './pages/Vendors.jsx';
 import SapExplorer from './pages/SapExplorer.jsx';
 import Audit from './pages/Audit.jsx';
+import Payments from './pages/Payments.jsx';
+import Settings from './pages/Settings.jsx';
 
 const Ctx = createContext(null);
 export const useApp = () => useContext(Ctx);
@@ -22,10 +24,12 @@ const NAV = [
   { route: '/overview', text: 'Overview', icon: 'home' },
   { route: '/invoices', text: 'Invoice Inbox', icon: 'documents' },
   { route: '/upload', text: 'Capture Invoice', icon: 'upload-to-cloud' },
+  { route: '/payments', text: 'Payments', icon: 'payment-approval', role: 'Approver' },
   { route: '/copilot', text: 'AI Copilot', icon: 'ai' },
   { route: '/vendors', text: 'Vendor Risk', icon: 'supplier' },
   { route: '/sap', text: 'SAP S/4HANA', icon: 'it-system' },
-  { route: '/audit', text: 'Audit Trail', icon: 'history', role: 'Manager' }
+  { route: '/audit', text: 'Audit Trail', icon: 'history', role: 'Manager' },
+  { route: '/settings', text: 'Settings', icon: 'action-settings', role: 'Manager' }
 ];
 
 function loadSession() {
@@ -35,6 +39,7 @@ function loadSession() {
 export default function App() {
   const [user, setUser] = useState(() => { const u = loadSession(); if (u) setCredentials(u); return u; });
   const [status, setStatus] = useState(null);
+  const [settings, setSettings] = useState({});
   const [collapsed, setCollapsed] = useState(false);
   const [dark, setDark] = useState(false);
   const [toast, setToast] = useState(null);
@@ -45,7 +50,8 @@ export default function App() {
   const notify = useCallback((msg) => setToast({ msg, k: Date.now() }), []);
   const can = useCallback((role) => !!user?.roles.includes(role), [user]);
 
-  useEffect(() => { if (user) api.systemStatus().then(setStatus).catch(() => {}); }, [user]);
+  const reloadSettings = useCallback(() => api.settings().then((rows) => setSettings(Object.fromEntries(rows.map((r) => [r.name, Number(r.value)])))).catch(() => {}), []);
+  useEffect(() => { if (user) { api.systemStatus().then(setStatus).catch(() => {}); reloadSettings(); } }, [user, reloadSettings]);
   useEffect(() => { setTheme(dark ? 'sap_horizon_dark' : 'sap_horizon'); }, [dark]);
 
   const login = (key) => {
@@ -62,7 +68,7 @@ export default function App() {
   const current = '/' + (location.pathname.split('/')[1] || 'overview');
 
   return (
-    <Ctx.Provider value={{ user, can, notify, status }}>
+    <Ctx.Provider value={{ user, can, notify, status, settings, reloadSettings }}>
       <NavigationLayout
         className="app-layout"
         mode={collapsed ? 'Collapsed' : 'Expanded'}
@@ -98,7 +104,9 @@ export default function App() {
             <Route path="/copilot" element={<Copilot />} />
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/sap" element={<SapExplorer />} />
+            <Route path="/payments" element={can('Approver') ? <Payments /> : <Navigate to="/overview" />} />
             <Route path="/audit" element={can('Manager') ? <Audit /> : <Navigate to="/overview" />} />
+            <Route path="/settings" element={can('Manager') ? <Settings /> : <Navigate to="/overview" />} />
             <Route path="*" element={<Navigate to="/overview" replace />} />
           </Routes>
         </main>

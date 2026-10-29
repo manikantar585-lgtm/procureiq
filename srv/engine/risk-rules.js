@@ -20,11 +20,13 @@ const fmt = (n) => '₹' + Number(n || 0).toLocaleString('en-IN', { maximumFract
  *   po       : SAP PO | null,
  *   match    : 3-way match result,
  *   history  : previous invoices [{ID, vendor_ID, invoiceNumber, grossAmount, invoiceDate, status}],
- *   validation: extractor checks
+ *   validation: extractor checks,
+ *   approvalLimit: runtime approval limit (defaults to APPROVAL_LIMIT)
  * }
  */
 function evaluate(ctx) {
   const { invoice, supplier, po, match, history = [], validation } = ctx;
+  const limit = ctx.approvalLimit || APPROVAL_LIMIT;
   const out = [];
   const add = (code, severity, weight, title, detail) => out.push({ code, severity, weight, title, detail, source: 'RULE' });
   const vendorHist = supplier ? history.filter((h) => h.vendor_ID === supplier.id && h.status !== 'Rejected') : [];
@@ -33,6 +35,7 @@ function evaluate(ctx) {
   if (!supplier) add('VENDOR_UNKNOWN', 'High', 35, 'Vendor not in SAP vendor master', `"${invoice.vendorName}" (GSTIN ${invoice.vendorGstin || 'n/a'}) could not be matched to any S/4HANA supplier.`);
   else {
     if (supplier.postingBlocked) add('VENDOR_BLOCKED', 'Critical', 60, 'Vendor is blocked for posting', `Supplier ${supplier.id} has a posting block in SAP.`);
+    if (supplier.paymentBlocked) add('VENDOR_PAYMENT_BLOCKED', 'Critical', 60, 'Vendor is blocked for payment', `Payments to supplier ${supplier.id} are blocked in ProcureIQ${supplier.blockReason ? ` (${supplier.blockReason})` : ''}. Resolve the vendor block before releasing new invoices.`);
     if (invoice.bankAccount && supplier.bankAccount && normAcct(invoice.bankAccount) !== normAcct(supplier.bankAccount)) {
       add('BANK_ACCOUNT_MISMATCH', 'Critical', 55, 'Bank account differs from vendor master',
         `Invoice asks for payment to ${invoice.bankAccount}, but SAP vendor master holds ${supplier.bankAccount}. This is the #1 pattern in vendor-impersonation (BEC) fraud - confirm with the vendor by phone using master-data contact details before paying.`);
@@ -54,13 +57,13 @@ function evaluate(ctx) {
   }
 
   // --- approval-limit gaming
-  const ratio = invoice.grossAmount / APPROVAL_LIMIT;
+  const ratio = invoice.grossAmount / limit;
   const recent = vendorHist.filter((h) => Math.abs(days(invoice.invoiceDate, h.invoiceDate)) <= 14);
   const recentSum = recent.reduce((s, h) => s + Number(h.grossAmount), 0);
-  if (recent.length && recentSum + invoice.grossAmount > APPROVAL_LIMIT && invoice.grossAmount < APPROVAL_LIMIT && recent.every((h) => Number(h.grossAmount) < APPROVAL_LIMIT)) {
-    add('SPLIT_INVOICING', 'High', 28, 'Possible split invoicing', `${recent.length + 1} invoices from this vendor within 14 days total ${fmt(recentSum + invoice.grossAmount)} - above the ${fmt(APPROVAL_LIMIT)} approval limit, while each one stays below it.`);
+  if (recent.length && recentSum + invoice.grossAmount > limit && invoice.grossAmount < limit && recent.every((h) => Number(h.grossAmount) < limit)) {
+    add('SPLIT_INVOICING', 'High', 28, 'Possible split invoicing', `${recent.length + 1} invoices from this vendor within 14 days total ${fmt(recentSum + invoice.grossAmount)} - above the ${fmt(limit)} approval limit, while each one stays below it.`);
   } else if (ratio >= 0.95 && ratio < 1) {
-    add('THRESHOLD_PROXIMITY', 'Medium', 10, 'Amount just below approval limit', `${fmt(invoice.grossAmount)} is ${(ratio * 100).toFixed(1)}% of the ${fmt(APPROVAL_LIMIT)} approval limit.`);
+    add('THRESHOLD_PROXIMITY', 'Medium', 10, 'Amount just below approval limit', `${fmt(invoice.grossAmount)} is ${(ratio * 100).toFixed(1)}% of the ${fmt(limit)} approval limit.`);
   }
 
   // --- 3-way match driven
@@ -68,7 +71,7 @@ function evaluate(ctx) {
   const failQty = match.lines.filter((l) => /received|ordered qty/.test(l.message || '') && l.status === 'FAIL');
   if (failQty.length) add('QTY_EXCEEDS_GR', 'High', 30, 'Billed for goods not received', failQty.map((l) => `Line ${l.lineNo}: ${l.message}`).join(' | ') + `. Potential overpayment ${fmt(match.varianceAmount)}.`);
   if (po && match.lines.some((l) => l.grQty === 0)) add('NO_GOODS_RECEIPT', 'High', 25, 'No goods receipt posted', 'GR-based invoice verification: goods/services have not been confirmed as received in SAP.');
-  const priceLines =match.lines.filter((l) => l.priceVariancePct > 0 && /above PO price/.test(l.message || ''));
+  const priceLines = match.lines.filter((l) => l.priceVariancePct > 0 && /above PO price/.test(l.message || ''));
   if (priceLines.length) {
     const worst = Math.max(...priceLines.map((l) => l.priceVariancePct));
     add('PRICE_VARIANCE', worst > 5 ? 'High' : 'Medium', worst > 5 ? 25 : 12, 'Price above contracted PO price', priceLines.map((l) => `Line ${l.lineNo} ${l.material}: ${fmt(l.invoicePrice)} vs PO ${fmt(l.poPrice)} (+${l.priceVariancePct}%)`).join(' | '));
@@ -103,7 +106,7 @@ function features(ctx) {
     qty_over_gr_ratio: overGr.length ? Math.max(...overGr) : 0,
     days_po_to_invoice: po && invoice.invoiceDate ? days(invoice.invoiceDate, po.poDate) : 0,
     vendor_age_days: supplier?.createdOn && invoice.invoiceDate ? Math.min(3650, days(invoice.invoiceDate, supplier.createdOn)) : 0,
-    threshold_ratio: (invoice.grossAmount || 0) / APPROVAL_LIMIT,
+    threshold_ratio: (invoice.grossAmount || 0) / (ctx.approvalLimit || APPROVAL_LIMIT),
     vendor_invoices_30d: vendorHist.filter((h) => Math.abs(days(invoice.invoiceDate, h.invoiceDate)) <= 30).length,
     has_po: po ? 1 : 0
   };

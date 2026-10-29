@@ -14,6 +14,9 @@ export const date = (d) => (d ? new Date(d + (String(d).length === 10 ? 'T00:00:
 export const dateTime = (d) => (d ? new Date(d).toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '–');
 
 export const RISK_STATE = { Low: 'Positive', Medium: 'Critical', High: 'Negative', Critical: 'Negative' };
-export const STATUS_DESIGN = { Matched: 'Information', Exception: 'Critical', Approved: 'Positive', Posted: 'Positive', Rejected: 'Negative', Received: 'Neutral', Extracted: 'Neutral' };
+export const STATUS_DESIGN = { Matched: 'Information', Exception: 'Critical', OnHold: 'Neutral', Approved: 'Positive', Posted: 'Positive', Paid: 'Positive', Rejected: 'Negative', Received: 'Neutral', Extracted: 'Neutral' };
+export const STATUS_TEXT = { OnHold: 'On hold' };
+export const HOLD_CATEGORIES = { VendorDispute: 'Vendor dispute', AwaitingCreditNote: 'Awaiting credit note', AwaitingGoodsReceipt: 'Awaiting goods receipt', BuyerConfirmation: 'Buyer confirmation', Other: 'Other' };
+export const today = () => new Date().toISOString().slice(0, 10);
 export const LINE_STATE = { OK: 'Positive', WARN: 'Critical', FAIL: 'Negative' };
 export const SEVERITY_ICON = { Low: 'message-information', Medium: 'message-warning', High: 'message-error', Critical: 'error' };

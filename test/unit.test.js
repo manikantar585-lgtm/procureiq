@@ -5,6 +5,9 @@ const { threeWayMatch } = require('../srv/engine/three-way-match');
 const rules = require('../srv/engine/risk-rules');
 const { layoutParse, validate, toISODate } = require('../srv/ai/extractor');
 const knowledge = require('../srv/ai/knowledge');
+const payments = require('../srv/engine/payment-run');
+const { slaState } = require('../srv/engine/sla');
+const settings = require('../srv/engine/settings');
 
 const PO = { poNumber: '4500000101', supplier: '17300001', currency: 'INR', poDate: '2026-05-01',
   items: [{ poItem: '10', material: 'RM-STL-0042', description: 'MS Steel Plate 6mm', quantity: 100, unit: 'EA', netPrice: 2450 }] };
@@ -46,6 +49,66 @@ describe('risk rules', () => {
     assert.ok(codes(ctx({ grossAmount: 950000 }, { history })).includes('SPLIT_INVOICING'));
   });
   test('feature vector has the ML contract fields', () => assert.deepEqual(Object.keys(rules.features(ctx())).length, 10));
+  test('vendor payment block is critical', () => {
+    const f = rules.evaluate({ ...ctx(), supplier: { ...supplier, paymentBlocked: true, blockReason: 'fraud investigation' } });
+    assert.ok(f.some((x) => x.code === 'VENDOR_PAYMENT_BLOCKED' && x.severity === 'Critical'));
+  });
+  test('runtime approval limit drives threshold checks', () => {
+    assert.ok(!codes(ctx()).includes('THRESHOLD_PROXIMITY'));
+    assert.ok(codes({ ...ctx(), approvalLimit: 300000 }).includes('THRESHOLD_PROXIMITY'));
+  });
+});
+
+describe('payment run', () => {
+  const inv = (o = {}) => ({ ID: 'i1', invoiceNumber: 'X/1', vendor_ID: 'V1', vendorName: 'V', invoiceDate: '2026-10-01', dueDate: '2026-10-31', grossAmount: 100000, ...o });
+  const net30 = { paymentTerms: 'NT30' }; // 2% within 10 days, net 30
+  const at = (paymentDate, i = inv(), v = net30, horizonDays = 7) => payments.evaluateItem(i, v, { paymentDate, horizonDays });
+
+  test('overdue invoices are paid', () => {
+    const r = at('2026-11-05');
+    assert.deepEqual([r.include, r.daysToDue, r.discount], [true, -5, 0]);
+    assert.equal(r.lostDiscount, 2000);
+  });
+  test('invoices due within the horizon are paid', () => assert.equal(at('2026-10-26').include, true));
+  test('pays early to capture the cash discount', () => {
+    const r = at('2026-10-08');
+    assert.deepEqual([r.include, r.discount, r.payAmount], [true, 2000, 98000]);
+    assert.match(r.reason, /cash discount/);
+  });
+  test('not yet due without discount is left for a later run', () => assert.equal(at('2026-10-15').include, false));
+  test('vendor payment block excludes the invoice', () => {
+    const r = at('2026-11-05', inv(), { ...net30, paymentBlocked: true, blockReason: 'BEC suspicion' });
+    assert.deepEqual([r.include, r.blocked], [false, true]);
+  });
+  test('due date falls back to payment terms', () => assert.equal(at('2026-10-20', inv({ dueDate: null }), { paymentTerms: 'NT15' }).dueDate, '2026-10-16'));
+  test('proposal totals and aging add up', () => {
+    const p = payments.proposal([inv(), inv({ ID: 'i2', dueDate: '2026-08-01', grossAmount: 50000 }), inv({ ID: 'i3', dueDate: '2026-12-31', invoiceDate: '2026-09-01' })],
+      { V1: net30 }, { paymentDate: '2026-10-29', horizonDays: 7 });
+    assert.equal(p.totals.openItems, 3);
+    assert.equal(p.totals.proposedItems, 2);
+    assert.equal(p.totals.overdueAmount, 50000);
+    assert.equal(p.aging.reduce((s, b) => s + b.amount, 0), p.totals.openAmount);
+    assert.equal(p.forecast[0].week, 'Overdue');
+  });
+});
+
+describe('exception SLA', () => {
+  const now = Date.parse('2026-10-29T12:00:00Z');
+  test('old exception breaches the SLA', () => assert.equal(slaState({ status: 'Exception', receivedAt: '2026-10-20T09:00:00Z' }, 5, now).breached, true));
+  test('fresh exception is within the SLA', () => assert.equal(slaState({ status: 'Exception', receivedAt: '2026-10-27T09:00:00Z' }, 5, now).breached, false));
+  test('hold clock starts when the invoice was put on hold', () => {
+    const s = slaState({ status: 'OnHold', receivedAt: '2026-06-01T00:00:00Z', heldAt: '2026-10-28T00:00:00Z' }, 5, now);
+    assert.deepEqual([s.ageDays, s.breached], [1, false]);
+  });
+  test('approved invoices are not under the exception SLA', () => assert.equal(slaState({ status: 'Approved', receivedAt: '2026-01-01' }, 5, now).applies, false));
+});
+
+describe('runtime settings', () => {
+  const all = settings.defaults();
+  test('accepts a value within bounds', () => assert.equal(settings.validate('slaDays', 10, all), null));
+  test('rejects out-of-range values', () => assert.match(settings.validate('pricePctWarn', 30, all), /between/));
+  test('block tolerance cannot be below confirm tolerance', () => assert.match(settings.validate('pricePctFail', 1, all), /cannot be lower/));
+  test('rejects unknown settings', () => assert.match(settings.validate('foo', 1, all), /Unknown/));
 });
 
 describe('document extraction (layout parser)', () => {

@@ -4,17 +4,29 @@ using { cuid, managed } from '@sap/cds/common';
 
 /**
  * Lifecycle of a supplier invoice inside ProcureIQ.
- * Received -> Extracted -> Matched | Exception -> Approved | Rejected -> Posted
+ * Received -> Extracted -> Matched | Exception (<-> OnHold) -> Approved | Rejected -> Posted -> Paid
  */
 type InvoiceStatus : String(20) enum {
   Received;
   Extracted;
   Matched;
   Exception;
+  OnHold;
   Approved;
   Rejected;
   Posted;
+  Paid;
 }
+
+type HoldCategory : String(30) enum {
+  VendorDispute;
+  AwaitingCreditNote;
+  AwaitingGoodsReceipt;
+  BuyerConfirmation;
+  Other;
+}
+
+type RequestStatus : String(10) enum { Pending; Approved; Rejected; }
 
 type RiskLevel  : String(10) enum { Low; Medium; High; Critical; }
 type LineStatus : String(10) enum { OK; WARN; FAIL; }
@@ -33,7 +45,49 @@ entity Vendors {
       onboardedOn   : Date;
       postingBlocked: Boolean default false;
       riskScore     : Decimal(5, 2) default 0;
+      // ProcureIQ-side payment block (SAP: supplier payment block) - stops payment runs, flags new invoices
+      paymentBlocked: Boolean default false;
+      blockReason   : String(500);
+      blockedBy     : String(60);
+      blockedAt     : Timestamp;
       invoices      : Association to many Invoices on invoices.vendor = $self;
+      bankChanges   : Association to many BankChangeRequests on bankChanges.vendor = $self;
+}
+
+/** Bank master change under dual control (four-eyes): requested by one user, approved by a different Finance Manager. */
+entity BankChangeRequests : cuid, managed {
+  vendor            : Association to Vendors;
+  oldAccount        : String(34);
+  newAccount        : String(34);
+  reason            : String(500);
+  callbackConfirmed : Boolean default false; // vendor called back on the master-data phone number
+  status            : RequestStatus default 'Pending';
+  requestedBy       : String(60);
+  decidedBy         : String(60);
+  decidedAt         : Timestamp;
+  decisionComment   : String(500);
+}
+
+/** F110-style payment run: pays posted invoices that are due (or worth paying early for the cash discount). */
+entity PaymentRuns : cuid, managed {
+  runId          : String(20);
+  paymentDate    : Date;
+  invoiceCount   : Integer;
+  grossAmount    : Amount;
+  discountAmount : Amount;
+  paidAmount     : Amount;
+  executedBy     : String(60);
+  invoices       : Association to many Invoices on invoices.paymentRun = $self;
+}
+
+/** Runtime-configurable business rules (tolerances, approval limit, SLA). */
+entity Settings : managed {
+  key name     : String(40);
+      value    : Decimal(15, 2);
+      label    : String(80);
+      unit     : String(10);
+      minValue : Decimal(15, 2);
+      maxValue : Decimal(15, 2);
 }
 
 /** A supplier invoice processed by the AI pipeline. */
@@ -67,9 +121,33 @@ entity Invoices : cuid, managed {
   decisionBy           : String(60);
   decisionComment      : String(500);
   processingMs         : Integer;
+  receivedAt           : Timestamp; // when the document entered AP - starts the exception SLA clock
+  // hold / dispute
+  holdCategory         : HoldCategory;
+  holdReason           : String(500);
+  heldBy               : String(60);
+  heldAt               : Timestamp;
+  statusBeforeHold     : InvoiceStatus;
+  // SLA escalation
+  escalated            : Boolean default false;
+  escalatedAt          : Timestamp;
+  // payment
+  paymentRun           : Association to PaymentRuns;
+  paidOn               : Date;
+  paidAmount           : Amount;
+  discountTaken        : Amount;
   items                : Composition of many InvoiceItems on items.parent = $self;
   matchResults         : Composition of many MatchResults on matchResults.parent = $self;
   anomalies            : Composition of many Anomalies on anomalies.parent = $self;
+  comments             : Composition of many InvoiceComments on comments.parent = $self;
+}
+
+/** Discussion thread on an invoice (AP clerk, buyer, approver). */
+entity InvoiceComments : cuid, managed {
+  parent     : Association to Invoices;
+  text       : String(1000);
+  author     : String(60);
+  authorName : String(120);
 }
 
 entity InvoiceItems : cuid {
@@ -115,6 +193,7 @@ entity Anomalies : cuid {
 /** Immutable audit trail of every pipeline step and user decision. */
 entity AuditLog : cuid, managed {
   invoice : Association to Invoices;
+  vendor  : Association to Vendors;
   step    : Integer default 0; // ordering within the same timestamp
   action  : String(40);
   actor   : String(60);

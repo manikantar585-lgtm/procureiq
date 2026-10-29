@@ -38,6 +38,21 @@
           "url": ":memory:"
         }
       },
+      "[development]": {
+        "db": {
+          "credentials": {
+            "url": "db.sqlite"
+          },
+          "schema_evolution": "auto"
+        }
+      },
+      "[test]": {
+        "db": {
+          "credentials": {
+            "url": ":memory:"
+          }
+        }
+      },
       "auth": {
         "kind": "mocked",
         "users": {

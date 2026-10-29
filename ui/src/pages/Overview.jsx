@@ -11,7 +11,7 @@ const greeting = () => { const h = new Date().getHours(); return h < 12 ? 'Good 
 const RISK_COLORS = { Low: 'var(--sapPositiveColor)', Medium: 'var(--sapCriticalColor)', High: 'var(--sapNegativeColor)', Critical: '#8d0a1f' };
 
 export default function Overview() {
-  const { user, status } = useApp();
+  const { user, status, can } = useApp();
   const navigate = useNavigate();
   const [k, setK] = useState(null);
   const [attention, setAttention] = useState([]);
@@ -51,6 +51,9 @@ export default function Overview() {
         <KpiTile icon="shield" label="High / critical risk" value={k.highRisk} sub="blocked before payment" tone="bad" onClick={() => navigate('/invoices?tab=risk')} />
         <KpiTile icon="wallet" label="Overpayment prevented" value={inrCompact(k.savingsIdentified)} sub="duplicates, variances, over-billing" tone="good" />
         <KpiTile icon="timesheet" label="Avg. AI processing" value={`${(k.avgProcessingMs / 1000).toFixed(2)} s`} sub="vs ~12 min manual" />
+        <KpiTile icon="payment-approval" label="Open payables" value={inrCompact(k.openPayables)} sub={`${inrCompact(k.overduePayables)} overdue`} tone={k.overduePayables ? 'bad' : 'neutral'}
+          onClick={can('Approver') ? () => navigate('/payments') : undefined} />
+        <KpiTile icon="lateness" label="SLA breaches" value={k.slaBreaches} sub={`escalated to Finance Manager · ${k.onHold} on hold`} tone={k.slaBreaches ? 'bad' : 'good'} onClick={() => navigate('/invoices?tab=escalated')} />
       </div>
 
       <div className="grid-2">

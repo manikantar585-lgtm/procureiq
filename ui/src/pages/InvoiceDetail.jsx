@@ -2,29 +2,48 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   ObjectPage, ObjectPageTitle, ObjectPageHeader, ObjectPageSection, Title, Text, Label, FlexBox, Button, Toolbar, ToolbarButton,
-  BusyIndicator, MessageStrip, AnalyticalTable, ObjectStatus, Dialog, TextArea, Bar, Timeline, TimelineItem, Icon, Breadcrumbs, BreadcrumbsItem, Tag, Link
+  BusyIndicator, MessageStrip, AnalyticalTable, ObjectStatus, Dialog, TextArea, Bar, Timeline, TimelineItem, Icon, Breadcrumbs, BreadcrumbsItem, Tag, Link,
+  Select, Option, Avatar
 } from '@ui5/webcomponents-react';
 import { api } from '../api';
 import { useApp } from '../App.jsx';
-import { Markdown, RiskTag, StatusTag, MatchStatus, RiskGauge } from '../components/Common.jsx';
-import { inr, date, dateTime, LINE_STATE, SEVERITY_ICON } from '../format';
+import { Markdown, RiskTag, StatusTag, MatchStatus, RiskGauge, ReasonField } from '../components/Common.jsx';
+import { inr, date, dateTime, LINE_STATE, SEVERITY_ICON, HOLD_CATEGORIES } from '../format';
+import { downloadBase64 } from '../download';
 
 const SEV_DESIGN = { Low: 'Information', Medium: 'Critical', High: 'Negative', Critical: 'Negative' };
-const AUDIT_ICON = { RECEIVED: 'pdf-attachment', EXTRACTED: 'ai', MATCHED: 'inspection', SCORED: 'shield', ROUTED: 'process', APPROVED: 'accept', REJECTED: 'decline', POSTED: 'paper-plane', POST_FAILED: 'error' };
+const AUDIT_ICON = {
+  RECEIVED: 'pdf-attachment', EXTRACTED: 'ai', MATCHED: 'inspection', SCORED: 'shield', ROUTED: 'process', APPROVED: 'accept', REJECTED: 'decline',
+  POSTED: 'paper-plane', POST_FAILED: 'error', ON_HOLD: 'pause', RELEASED: 'play', ESCALATED: 'lateness', PAID: 'payment-approval'
+};
+const HOLDABLE = ['Matched', 'Exception', 'Approved'];
+const DIALOG = {
+  approve: { title: 'Approve', button: 'Approve', design: 'Positive', label: 'Comment', placeholder: 'e.g. Price increase confirmed by buyer, PO amendment 2 pending', ok: 'Invoice approved' },
+  reject: { title: 'Reject', button: 'Reject', design: 'Negative', label: 'Reason (sent to vendor)', placeholder: 'e.g. Billed quantity exceeds goods received - please issue credit note', ok: 'Invoice rejected', required: true },
+  hold: { title: 'Put on hold', button: 'Put on hold', design: 'Emphasized', label: 'Reason', placeholder: 'e.g. Vendor disputes the short delivery on line 2 - waiting for their reply', ok: 'Invoice put on hold', required: true },
+  release: { title: 'Release hold', button: 'Release', design: 'Emphasized', label: 'Resolution (optional)', placeholder: 'e.g. Credit note CN-2231 received and booked', ok: 'Hold released' },
+  delete: { title: 'Delete', button: 'Delete permanently', design: 'Negative', label: 'Reason (kept in the audit trail)', placeholder: 'e.g. Test upload / wrong document sent by the vendor', ok: 'Invoice permanently deleted', required: true }
+};
+const LOCKED_IN_SAP = ['Posted', 'Paid'];
 
 function Field({ label, children }) {
   return (<div className="field"><Label>{label}</Label><div className="field-value">{children ?? '–'}</div></div>);
 }
 
+const initials = (name = '') => name.replace(/\(.*\)/, '').trim().split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+const ageDays = (since) => (since ? Math.floor((Date.now() - new Date(since)) / 86400000) : 0);
+
 export default function InvoiceDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { can, notify } = useApp();
+  const { can, notify, settings } = useApp();
   const [inv, setInv] = useState(null);
   const [audit, setAudit] = useState([]);
   const [error, setError] = useState(null);
-  const [dialog, setDialog] = useState(null); // 'approve' | 'reject'
+  const [dialog, setDialog] = useState(null); // key of DIALOG
   const [comment, setComment] = useState('');
+  const [category, setCategory] = useState('VendorDispute');
+  const [note, setNote] = useState('');
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(() => {
@@ -33,12 +52,21 @@ export default function InvoiceDetail() {
   }, [id, can]);
   useEffect(load, [load]);
 
-  const act = async (fn, okMsg) => {
+  const act = async (fn, okMsg, after = load) => {
     setBusy(true);
-    try { await fn(); notify(okMsg); setDialog(null); setComment(''); load(); }
-    catch (e) { notify(e.message); }
+    try { await fn(); notify(okMsg); setDialog(null); setComment(''); after(); return true; }
+    catch (e) { notify(e.message); return false; }
     finally { setBusy(false); }
   };
+  const submitDialog = () => act({
+    approve: () => api.approve(inv.ID, comment),
+    reject: () => api.reject(inv.ID, comment),
+    hold: () => api.hold(inv.ID, category, comment),
+    release: () => api.release(inv.ID, comment),
+    delete: () => api.deleteInvoice(inv.ID, comment)
+  }[dialog], DIALOG[dialog].ok, dialog === 'delete' ? () => navigate('/invoices') : load);
+  const postNote = async () => { if (await act(() => api.comment(inv.ID, note), 'Comment added')) setNote(''); };
+  const report = () => act(async () => downloadBase64(`audit-report-${inv.invoiceNumber.replace(/[^A-Za-z0-9-]+/g, '_')}.pdf`, await api.auditReport(inv.ID)), 'Audit report downloaded');
 
   if (error) return <div className="page"><MessageStrip design="Negative">{error}</MessageStrip></div>;
   if (!inv) return <BusyIndicator active size="L" className="center-busy" />;
@@ -46,7 +74,9 @@ export default function InvoiceDetail() {
   const header = inv.matchResults.filter((m) => m.lineNo === 0);
   const lines = inv.matchResults.filter((m) => m.lineNo > 0);
   const decidable = ['Matched', 'Exception'].includes(inv.status);
+  const slaOpen = inv.escalated && ['Exception', 'OnHold'].includes(inv.status);
   const rec = /Recommendation:\s*\**\s*(APPROVE|REVIEW|BLOCK)/i.exec(inv.aiSummary || '')?.[1]?.toUpperCase();
+  const d = dialog && DIALOG[dialog];
 
   const matchCols = [
     { Header: 'Line', accessor: 'lineNo', width: 60 },
@@ -78,12 +108,16 @@ export default function InvoiceDetail() {
           <ObjectPageTitle
             breadcrumbs={<Breadcrumbs onItemClick={(e) => { e.preventDefault(); navigate('/invoices'); }}><BreadcrumbsItem>Invoice Inbox</BreadcrumbsItem><BreadcrumbsItem>{inv.invoiceNumber}</BreadcrumbsItem></Breadcrumbs>}
             header={<Title level="H2" size="H3">{inv.invoiceNumber}</Title>}
-            subHeader={<FlexBox style={{ gap: '0.5rem' }} alignItems="Center"><Text>{inv.vendorName}</Text><StatusTag status={inv.status} /><RiskTag level={inv.riskLevel} score={inv.riskScore} /></FlexBox>}
+            subHeader={<FlexBox style={{ gap: '0.5rem' }} alignItems="Center"><Text>{inv.vendorName}</Text><StatusTag status={inv.status} escalated={inv.escalated} /><RiskTag level={inv.riskLevel} score={inv.riskScore} /></FlexBox>}
             actionsBar={
               <Toolbar design="Transparent">
                 {decidable && can('Approver') && <ToolbarButton design="Positive" icon="accept" text="Approve" onClick={() => setDialog('approve')} />}
-                {inv.status !== 'Posted' && inv.status !== 'Rejected' && can('Approver') && <ToolbarButton design="Negative" icon="decline" text="Reject" onClick={() => setDialog('reject')} />}
+                {!['Posted', 'Rejected', 'Paid'].includes(inv.status) && can('Approver') && <ToolbarButton design="Negative" icon="decline" text="Reject" onClick={() => setDialog('reject')} />}
                 {inv.status === 'Approved' && can('Approver') && <ToolbarButton design="Emphasized" icon="paper-plane" text="Post to SAP" disabled={busy} onClick={() => act(() => api.post(inv.ID), 'Supplier invoice posted to SAP S/4HANA')} />}
+                {HOLDABLE.includes(inv.status) && <ToolbarButton design="Transparent" icon="pause" text="Put on hold" onClick={() => setDialog('hold')} />}
+                {inv.status === 'OnHold' && <ToolbarButton design="Emphasized" icon="play" text="Release hold" onClick={() => setDialog('release')} />}
+                {can('Approver') && <ToolbarButton design="Transparent" icon="download" text="Audit report (PDF)" disabled={busy} onClick={report} />}
+                {can('Manager') && !LOCKED_IN_SAP.includes(inv.status) && <ToolbarButton design="Transparent" icon="delete" text="Delete" onClick={() => setDialog('delete')} />}
                 <ToolbarButton design="Transparent" icon="ai" text="Ask Copilot" onClick={() => navigate(`/copilot?q=${encodeURIComponent(`Why is ${inv.invoiceNumber} flagged and what should I do?`)}`)} />
               </Toolbar>
             }
@@ -99,11 +133,27 @@ export default function InvoiceDetail() {
               <Field label="Invoice / due date">{date(inv.invoiceDate)} → {date(inv.dueDate)}</Field>
               <Field label="AI extraction">{inv.extractionEngine} · {Number(inv.extractionConfidence)}%</Field>
               <Field label="SAP document">{inv.sapDocument ? `${inv.sapDocument} / ${inv.sapFiscalYear}` : 'not posted'}</Field>
+              {inv.status === 'Paid' && <Field label="Payment">{inr(inv.paidAmount, 2)} on {date(inv.paidOn)}{inv.paymentRun ? ` · ${inv.paymentRun.runId}` : ''}</Field>}
             </FlexBox>
           </ObjectPageHeader>
         }
       >
         <ObjectPageSection id="review" titleText="AI Review">
+          {slaOpen && (
+            <MessageStrip design="Negative" hideCloseButton icon={<Icon name="lateness" />} className="banner">
+              <b>SLA breached.</b> Open {ageDays(inv.status === 'OnHold' ? inv.heldAt : inv.receivedAt)} days (SLA {settings.slaDays ?? 5} days) - escalated to the Finance Manager on {dateTime(inv.escalatedAt)}.
+            </MessageStrip>
+          )}
+          {inv.status === 'OnHold' && (
+            <MessageStrip design="Critical" hideCloseButton icon={<Icon name="pause" />} className="banner">
+              <b>On hold · {HOLD_CATEGORIES[inv.holdCategory] || inv.holdCategory}</b> since {dateTime(inv.heldAt)} by {inv.heldBy}: {inv.holdReason}
+            </MessageStrip>
+          )}
+          {inv.status === 'Paid' && (
+            <MessageStrip design="Positive" hideCloseButton icon={<Icon name="payment-approval" />} className="banner">
+              <b>Paid</b> {inr(inv.paidAmount, 2)} on {date(inv.paidOn)}{inv.paymentRun ? ` in payment run ${inv.paymentRun.runId}` : ''}{Number(inv.discountTaken) ? ` · cash discount ${inr(inv.discountTaken, 2)} captured` : ''}.
+            </MessageStrip>
+          )}
           <div className={`ai-review rec-${(rec || 'none').toLowerCase()}`}>
             <FlexBox alignItems="Center" style={{ gap: '0.5rem', marginBottom: '0.5rem' }}>
               <Icon name="ai" /><b>ProcureIQ reviewer note</b>
@@ -128,7 +178,10 @@ export default function InvoiceDetail() {
             {header.map((h) => <ObjectStatus key={h.ID} state={LINE_STATE[h.status]} showDefaultIcon inverted>{h.description}: {h.message}</ObjectStatus>)}
           </FlexBox>
           <AnalyticalTable data={lines} columns={matchCols} visibleRows={Math.max(1, lines.length)} rowHeight={56} scaleWidthMode="Smart" noDataText="No lines" />
-          <Text className="muted small">Invoice vs SAP purchase order (API_PURCHASEORDER_PROCESS_SRV) vs goods receipts (API_MATERIAL_DOCUMENT_SRV, mvt 101). Price tolerance 2% warn / 5% block.</Text>
+          <Text className="muted small">
+            Invoice vs SAP purchase order (API_PURCHASEORDER_PROCESS_SRV) vs goods receipts (API_MATERIAL_DOCUMENT_SRV, mvt 101).
+            Price tolerance {settings.pricePctWarn ?? 2}% warn / {settings.pricePctFail ?? 5}% block (current settings; this invoice was matched when it was received).
+          </Text>
         </ObjectPageSection>
 
         <ObjectPageSection id="items" titleText="Invoice Data">
@@ -138,9 +191,30 @@ export default function InvoiceDetail() {
             <Field label="Bank account on invoice">{inv.bankAccount}</Field>
             <Field label="Bank account in SAP">{inv.vendor?.bankAccount}</Field>
             <Field label="Source">{inv.source} · {inv.fileName}</Field>
+            <Field label="Received">{dateTime(inv.receivedAt)}</Field>
             <Field label="Processing time">{inv.processingMs} ms</Field>
           </FlexBox>
+          {inv.vendor?.paymentBlocked && <MessageStrip design="Negative" hideCloseButton className="banner">Vendor is blocked for payment: {inv.vendor.blockReason}</MessageStrip>}
           <AnalyticalTable data={inv.items} columns={itemCols} visibleRows={Math.max(1, inv.items.length)} scaleWidthMode="Smart" />
+        </ObjectPageSection>
+
+        <ObjectPageSection id="discussion" titleText={`Discussion (${inv.comments.length})`}>
+          <div className="thread">
+            {inv.comments.length === 0 && <Text className="muted">No comments yet. Use the discussion to coordinate with buyers and approvers - it is part of the audit report.</Text>}
+            {inv.comments.map((c) => (
+              <div key={c.ID} className="thread-item">
+                <Avatar initials={initials(c.authorName)} size="XS" colorScheme="Accent6" />
+                <div>
+                  <div className="thread-meta"><b>{c.authorName}</b> · {dateTime(c.createdAt)}</div>
+                  <div className="thread-text">{c.text}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <FlexBox className="composer" alignItems="End" style={{ gap: '0.5rem' }}>
+            <TextArea rows={2} maxlength={1000} value={note} placeholder="Add a comment for buyers and approvers" onInput={(e) => setNote(e.target.value)} />
+            <Button design="Emphasized" icon="post" disabled={busy || !note.trim()} onClick={postNote}>Post</Button>
+          </FlexBox>
         </ObjectPageSection>
 
         {can('Approver') && (
@@ -158,24 +232,36 @@ export default function InvoiceDetail() {
 
       <Dialog
         open={!!dialog}
-        headerText={dialog === 'approve' ? `Approve ${inv.invoiceNumber}` : `Reject ${inv.invoiceNumber}`}
+        headerText={d ? `${d.title} ${inv.invoiceNumber}` : ''}
         onClose={() => setDialog(null)}
         footer={
           <Bar endContent={<>
-            <Button design={dialog === 'approve' ? 'Positive' : 'Negative'} disabled={busy}
-              onClick={() => act(() => (dialog === 'approve' ? api.approve(inv.ID, comment) : api.reject(inv.ID, comment)), dialog === 'approve' ? 'Invoice approved' : 'Invoice rejected')}>
-              {dialog === 'approve' ? 'Approve' : 'Reject'}
-            </Button>
+            <Button design={d?.design} disabled={busy || (d?.required && !comment.trim())} onClick={submitDialog}>{d?.button}</Button>
             <Button design="Transparent" onClick={() => setDialog(null)}>Cancel</Button>
           </>} />
         }
       >
-        <div style={{ width: 'min(420px, 80vw)' }}>
-          {dialog === 'approve' && inv.status === 'Exception' && <MessageStrip design="Critical" hideCloseButton>This invoice has open exceptions. A justification is mandatory and will be written to the audit trail.</MessageStrip>}
-          <Label for="cmt" style={{ marginTop: '0.75rem', display: 'block' }}>{dialog === 'approve' ? 'Comment' : 'Reason (sent to vendor)'}</Label>
-          <TextArea id="cmt" rows={4} value={comment} onInput={(e) => setComment(e.target.value)} style={{ width: '100%' }}
-            placeholder={dialog === 'approve' ? 'e.g. Price increase confirmed by buyer, PO amendment 2 pending' : 'e.g. Billed quantity exceeds goods received - please issue credit note'} />
-        </div>
+        {d && (
+          <div style={{ width: 'min(420px, 80vw)' }}>
+            {dialog === 'approve' && inv.status === 'Exception' && <MessageStrip design="Critical" hideCloseButton>This invoice has open exceptions. A justification is mandatory and will be written to the audit trail.</MessageStrip>}
+            {dialog === 'delete' && (
+              <MessageStrip design="Negative" hideCloseButton>
+                This permanently removes the invoice with its lines, 3-way match, risk findings and comments. It cannot be undone.
+                The audit trail keeps its history plus a record of this deletion, and the same document can be uploaded again.
+              </MessageStrip>
+            )}
+            {dialog === 'hold' && (
+              <>
+                <MessageStrip design="Information" hideCloseButton>A held invoice cannot be approved until the hold is released. The {settings.slaDays ?? 5}-day SLA restarts now.</MessageStrip>
+                <Label for="hold-cat" style={{ marginTop: '0.75rem', display: 'block' }}>Category</Label>
+                <Select id="hold-cat" style={{ width: '100%' }} onChange={(e) => setCategory(e.detail.selectedOption.value)}>
+                  {Object.entries(HOLD_CATEGORIES).map(([k, v]) => <Option key={k} value={k} selected={category === k}>{v}</Option>)}
+                </Select>
+              </>
+            )}
+            <ReasonField id="cmt" label={d.label} value={comment} onInput={setComment} placeholder={d.placeholder} />
+          </div>
+        )}
       </Dialog>
     </>
   );

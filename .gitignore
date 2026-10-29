@@ -10,3 +10,4 @@ __pycache__/
 .pytest_cache/
 ml-service/model/
 .DS_Store
+*.sqlite-*

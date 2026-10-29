@@ -14,7 +14,7 @@
 | Touchless 3-way match rate | **~82 %** |
 | Fraud scenarios caught | duplicates · bank-account change · split invoicing · over-billing · price creep · GSTIN mismatch · non-PO spend |
 | ML model (held-out, harder-than-training fraud) | ROC-AUC **0.99** · precision **1.00** · recall **0.80** |
-| Automated tests | **29** Node (unit + API) + **4** Python |
+| Automated tests | **58** Node (unit + API) + **4** Python |
 
 ---
 
@@ -50,7 +50,20 @@ flowchart LR
 5. **3-way match.** Line matching by PO item, then material, then description similarity. Price tolerance is 2 % warn / 5 % block, quantity must be ≤ goods received, and lines must exist on the PO. This mirrors SAP MIRO tolerance keys PP, DQ and BW.
 6. **Risk scoring.** 14 explainable rules plus an ML anomaly score, with severity floors so a single critical signal can't be averaged away.
 7. **AI reviewer note.** An APPROVE / REVIEW / BLOCK recommendation with the concrete numbers.
-8. **Workflow.** Approve or reject with segregation of duties, then **post to SAP** (`A_SupplierInvoice`). Every step is written to an immutable audit trail.
+8. **Workflow.** Approve or reject (one by one or in bulk) with segregation of duties, park disputed invoices on hold, then **post to SAP** (`A_SupplierInvoice`) and **pay** in a payment run. Every step is written to an immutable audit trail.
+
+### Workflow, payments and controls
+
+| Feature | What it does |
+|---|---|
+| **Payment run** (Payments page) | The "Pay" in Procure-to-Pay, modelled on SAP F110. Shows payables aging and a weekly cash-out forecast, and proposes what to pay on a payment date: everything overdue or due within the horizon, plus invoices worth paying early while a cash discount (e.g. 2% within 10 days, net 30) is still open. The Finance Manager executes the run, so the person who approves an invoice never releases its payment. |
+| **Hold & dispute** | Park an invoice with a category (vendor dispute, awaiting credit note / goods receipt, buyer confirmation) and a reason; release it back to where it was. Each invoice has a discussion thread for clerks, buyers and approvers. |
+| **SLA escalation** | Exceptions and holds older than the SLA (default 5 days) are escalated to the Finance Manager every hour, flagged in the inbox and on the Overview, and logged. |
+| **Vendor payment block** | An Approver can block all payments to a vendor (e.g. during a fraud investigation); only the Finance Manager can lift it. Blocked vendors are excluded from payment runs and their new invoices score Critical. |
+| **Four-eyes bank changes** | A bank master change needs a confirmed call-back to the vendor and is applied only after a *different* Finance Manager approves it. Invoices still asking for the old account are then caught as bank-account mismatches. |
+| **Runtime settings** (Settings page) | The Finance Manager can tune the approval limit, price tolerances, SLA and payment horizon without a redeploy. Changes apply to newly processed invoices and are audited. |
+| **Delete & reset** | The Finance Manager can permanently delete an invoice that hasn't reached SAP (posted or paid invoices must be reversed in SAP instead); the audit trail keeps its history and records the deletion. **Reset all data** wipes everything and reloads the demo invoices. |
+| **Bulk actions & reports** | Select invoices in the inbox to approve or reject at once (each one is still checked against the approval matrix), export the inbox, payment proposal or audit trail to CSV, and download a PDF audit report per invoice. |
 
 ---
 
@@ -104,7 +117,9 @@ npm start                     # http://localhost:4004  -> sign in as any persona
 # optional hot-reload UI: npm run dev:ui  (http://localhost:5173/ui/)
 ```
 
-On first start, 28 demo invoices are replayed **through the real pipeline**, so the dashboard has realistic data. Sample PDFs for live upload are in `samples/invoices/`, or click **Try a sample** on the Capture page.
+On first start, 28 demo invoices are replayed **through the real pipeline**, so the dashboard has realistic data.
+
+Data is saved in `db.sqlite` in the project folder (git-ignored), so it survives restarts; the tables are created and upgraded automatically (CAP schema evolution). To start fresh, use **Settings → Reset all data**, or stop the server and delete `db.sqlite*`. Tests always use a separate in-memory database. Sample PDFs for live upload are in `samples/invoices/`, or click **Try a sample** on the Capture page.
 
 ### Turn on GenAI (free options)
 
@@ -136,7 +151,7 @@ Then assign the role collections `ProcureIQ_Clerk`, `ProcureIQ_Approver` and `Pr
 ### Tests
 
 ```bash
-npm test                      # 29 tests: match engine, fraud rules, extraction, RAG, full OData API
+npm test                      # 58 tests: match engine, fraud rules, extraction, RAG, payment run, SLA, full OData API
 cd ml-service && pytest -q    # model quality gate (ROC-AUC >= 0.85), scoring and explanations
 ```
 
@@ -149,7 +164,10 @@ db/schema.cds              Domain model: Invoices, Items, MatchResults, Anomalie
 srv/p2p-service.cds|.js    OData V4 service, workflow actions, KPIs, authorization
 srv/pipeline.js            End-to-end AI pipeline orchestration
 srv/ai/                    llm.js (multi-provider) · extractor.js · copilot.js (agent) · knowledge.js (RAG)
-srv/engine/                three-way-match.js · risk-rules.js · ml-client.js
+srv/engine/                three-way-match.js · risk-rules.js · ml-client.js · payment-run.js · sla.js · settings.js
+srv/workflow.js            SLA escalation job
+srv/demo-data.js           Schema deploy for the file database, demo seeding, reset
+srv/reports/               PDF invoice audit report (pdfkit)
 srv/sap/                   s4-client.js (mock / sandbox / tenant) + S/4-shaped mock data
 srv/knowledge/             AP policy, SAP P2P guide, fraud playbook (RAG corpus)
 ml-service/                FastAPI + scikit-learn ensemble, training, model card, tests
@@ -164,6 +182,8 @@ mta.yaml, xs-security.json SAP BTP deployment
 - **Roles:** Clerk / Approver / Manager. Clerks cannot approve. Invoices above ₹10 lakh and Critical-risk invoices need a Finance Manager. Approving an exception requires a written justification.
 - **Audit:** every pipeline step and decision is logged with actor and timestamp.
 - **Duplicate prevention:** both at document level (hash) and at business level (vendor + invoice number, same amount within 30 days).
+- **Payments:** only invoices posted to SAP can be paid, payment runs are Finance Manager only, payment dates can't be in the past, and vendors with a payment block are excluded.
+- **Master data:** bank-account changes need a vendor call-back and four-eyes approval; lifting a vendor payment block and changing business rules are Finance Manager only, with a reason or audit entry every time.
 - **Defence in depth:** ML-service or LLM outages degrade gracefully to deterministic fallbacks, so invoice processing never stops.
 
 ## Roadmap

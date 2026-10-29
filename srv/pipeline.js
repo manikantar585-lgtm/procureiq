@@ -13,6 +13,7 @@ const llm = require('./ai/llm');
 const { threeWayMatch } = require('./engine/three-way-match');
 const rules = require('./engine/risk-rules');
 const ml = require('./engine/ml-client');
+const settings = require('./engine/settings');
 
 const LOG = cds.log('pipeline');
 const fmt = (n) => '₹' + Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 });
@@ -87,26 +88,31 @@ async function processDocument(buffer, fileName, opts = {}) {
     ? (() => { const text = buffer.toString('utf8'); const inv = extractor.layoutParse(text); const v = extractor.validate(inv); return { invoice: inv, rawText: text, engine: 'layout-parser', confidence: v.confidence, checks: v.checks }; })()
     : await extractor.extract(buffer, fileName);
   const inv = ex.invoice;
+  const cfg = await settings.current();
 
   // 2. Vendor resolution against SAP vendor master (GSTIN first, then fuzzy name)
-  const { supplier } = await s4.findSupplier({ gstin: inv.vendorGstin, name: inv.vendorName });
+  let { supplier } = await s4.findSupplier({ gstin: inv.vendorGstin, name: inv.vendorName });
   if (supplier) {
     await UPSERT.into(Vendors).entries({
       ID: supplier.id, name: supplier.name, city: supplier.city, country: supplier.country, gstin: supplier.gstin,
       bankAccount: supplier.bankAccount, category: supplier.category, paymentTerms: supplier.paymentTerms,
       onboardedOn: supplier.createdOn, postingBlocked: supplier.postingBlocked
     });
+    // the payment block is maintained in ProcureIQ, not replicated from SAP
+    const local = await SELECT.one.from(Vendors, supplier.id).columns('paymentBlocked', 'blockReason');
+    supplier = { ...supplier, paymentBlocked: !!local?.paymentBlocked, blockReason: local?.blockReason };
   }
 
   // 3. PO + goods receipts from S/4HANA
   const [po, grs] = await Promise.all([s4.getPurchaseOrder(inv.poNumber), s4.getGoodsReceipts(inv.poNumber)]);
 
   // 4. 3-way match
-  const match = threeWayMatch({ vendorId: supplier?.id, currency: inv.currency, poNumber: inv.poNumber, items: inv.items }, po, grs);
+  const match = threeWayMatch({ vendorId: supplier?.id, currency: inv.currency, poNumber: inv.poNumber, items: inv.items }, po, grs,
+    { pricePctWarn: cfg.pricePctWarn, pricePctFail: cfg.pricePctFail });
 
   // 5. Risk: rules + ML
   const history = await SELECT.from(Invoices).columns('ID', 'vendor_ID', 'invoiceNumber', 'grossAmount', 'invoiceDate', 'status');
-  const ctx = { invoice: inv, supplier, po, match, history, validation: ex.checks };
+  const ctx = { invoice: inv, supplier, po, match, history, validation: ex.checks, approvalLimit: cfg.approvalLimit };
   const findings = rules.evaluate(ctx);
   const mlRes = await ml.score(rules.features(ctx));
   if (mlRes.anomalyScore >= 0.5) {
@@ -153,6 +159,7 @@ async function processDocument(buffer, fileName, opts = {}) {
     mlModel: mlRes.model,
     aiSummary: summary,
     processingMs,
+    receivedAt: opts.receivedAt || new Date().toISOString(),
     items: inv.items.map((i, idx) => ({ lineNo: i.lineNo || idx + 1, material: i.material, description: i.description, quantity: i.quantity, unit: i.unit, unitPrice: i.unitPrice, amount: i.amount, poItem: match.lines[idx]?.poItem })),
     matchResults: [
       ...match.header.map((h) => ({ lineNo: 0, description: h.check, status: h.status, message: h.message })),
@@ -177,7 +184,7 @@ async function processDocument(buffer, fileName, opts = {}) {
 async function refreshVendorRisk(vendorId) {
   const { Invoices, Vendors } = cds.entities('procureiq');
   const rows = await SELECT.from(Invoices).columns('riskScore').where({ vendor_ID: vendorId });
-  if (!rows.length) return;
+  if (!rows.length) return UPDATE(Vendors, vendorId).with({ riskScore: 0 }); // last invoice deleted
   const avg = rows.reduce((s, r) => s + Number(r.riskScore), 0) / rows.length;
   const max = Math.max(...rows.map((r) => Number(r.riskScore)));
   await UPDATE(Vendors, vendorId).with({ riskScore: Math.round((0.6 * avg + 0.4 * max) * 100) / 100 });

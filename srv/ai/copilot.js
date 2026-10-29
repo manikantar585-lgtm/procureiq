@@ -25,7 +25,7 @@ const TOOLS = [
     parameters: {
       type: 'object',
       properties: {
-        status: { type: 'string', enum: ['Matched', 'Exception', 'Approved', 'Rejected', 'Posted'], description: 'Workflow status. Matched = clean & waiting for approval.' },
+        status: { type: 'string', enum: ['Matched', 'Exception', 'OnHold', 'Approved', 'Rejected', 'Posted', 'Paid'], description: 'Workflow status. Matched = clean & waiting for approval. OnHold = parked (dispute, credit note). Paid = settled in a payment run.' },
         riskLevel: { type: 'string', enum: ['Low', 'Medium', 'High', 'Critical'] },
         minRiskLevel: { type: 'string', enum: ['Medium', 'High', 'Critical'], description: 'Return this level and above' },
         vendor: { type: 'string', description: 'Vendor name (partial) or SAP supplier number' },

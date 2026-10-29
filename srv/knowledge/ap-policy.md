@@ -30,3 +30,12 @@ Invoices without a valid purchase order ("maverick spend") are only allowed for 
 
 ## New vendors
 Vendors onboarded within the last 90 days are under enhanced monitoring: their first invoices above INR 2,00,000 require a second approver.
+
+## Exception SLA and escalation
+Invoices with open exceptions must be resolved within 5 days of receipt (setting "Exception / hold SLA"). Invoices on hold must be resolved within 5 days of being put on hold. ProcureIQ checks the SLA every hour and escalates breaches to the Finance Manager, with an audit-trail entry. Putting an invoice on hold requires a category (vendor dispute, awaiting credit note, awaiting goods receipt, buyer confirmation, other) and a reason; held invoices cannot be approved until the hold is released.
+
+## Payment runs and cash discounts
+Only invoices posted to SAP S/4HANA are paid. The payment run pays every invoice that is overdue or due within the run horizon (default 7 days), and pays early when a cash discount is still available (for example 2% within 10 days, net 30). Payment runs are executed by the Finance Manager only, so the person who approves an invoice never releases its payment (segregation of duties). Payment dates cannot be in the past.
+
+## Vendor payment blocks
+An Approver or the Finance Manager may block all payments to a vendor, for example during a fraud investigation or while bank details are being verified. A blocked vendor's invoices are excluded from payment runs and new invoices from the vendor are flagged as Critical. Only the Finance Manager can lift a payment block, and a reason is recorded either way.

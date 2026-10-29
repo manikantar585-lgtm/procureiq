@@ -90,6 +90,8 @@ function normPO(po) {
   };
 }
 
+const bankOverrides = new Map(); // approved bank master changes (see updateSupplierBankAccount)
+
 function normSupplier(s) {
   if (!s) return null;
   return {
@@ -98,7 +100,7 @@ function normSupplier(s) {
     city: s.CityName,
     country: s.Country,
     gstin: s.VATRegistration || s.TaxNumber3 || null,
-    bankAccount: s._Bank || null,
+    bankAccount: bankOverrides.get(s.Supplier) || s._Bank || null,
     category: s._Category || null,
     paymentTerms: s._PaymentTerms || null,
     createdOn: odataDate(s.CreationDate),
@@ -201,6 +203,25 @@ async function postSupplierInvoice(inv) {
   return { document, fiscalYear: String(new Date().getFullYear()), simulated: true, payload };
 }
 
+/**
+ * Apply a dual-control approved bank master change. In S/4HANA this is a change to the
+ * business partner bank details (API_BUSINESS_PARTNER, A_BusinessPartnerBank); here the write-back
+ * is simulated: the new account overrides the replicated value in every mode, so the
+ * bank-account fraud rule compares invoices against the approved account.
+ */
+function updateSupplierBankAccount(id, bankAccount) {
+  bankOverrides.set(String(id), bankAccount);
+  LOG.info(`bank details of supplier ${id} changed (simulated write-back)`);
+  return { simulated: true };
+}
+
+/** Forget simulated postings and bank changes (used when all ProcureIQ data is reset). */
+function resetSimulation() {
+  bankOverrides.clear();
+  cache.clear();
+  if (MOCK) MOCK.postedInvoices = [];
+}
+
 function status() {
   return {
     mode: MODE,
@@ -209,4 +230,4 @@ function status() {
   };
 }
 
-module.exports = { getPurchaseOrder, getGoodsReceipts, getSupplier, listSuppliers, findSupplier, postSupplierInvoice, status, _normPO: normPO };
+module.exports = { getPurchaseOrder, getGoodsReceipts, getSupplier, listSuppliers, findSupplier, postSupplierInvoice, updateSupplierBankAccount, resetSimulation, status, _normPO: normPO };
